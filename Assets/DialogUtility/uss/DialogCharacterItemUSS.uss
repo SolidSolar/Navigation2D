@@ -1,0 +1,113 @@
+.base {
+    width: 340px;
+    min-width: 340px;
+    max-width: 340px;
+    height: 60px;
+}
+
+.character-name {
+    align-self: center;
+}
+
+.character-name > .unity-text-field__label {
+    width: 52px;
+    min-width: 52px;
+    max-width: 52px;
+    align-self: flex-start;
+}
+
+.character-name > .unity-base-text-field {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    height: 52px;
+    width: 52px;
+    min-width: 52px;
+    max-width: 52px;
+    align-self: flex-end;
+}
+
+
+.character-name > .unity-base-text-field__input--single-line {
+    -unity-text-align: upper-right;
+    -unity-overflow-clip-box: padding-box;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.toggle{
+    width: 80px;
+    height: 20px;
+    align-self: center;
+    justify-content: flex-start;
+}
+
+.toggle > .unity-toggle__input > .unity-toggle__checkmark{
+    width: 20px;
+    height:20px;
+    align-self: center;
+    justify-content: space-around;
+}
+.toggle > .unity-toggle__input{
+    width: 20px;
+    height: 20px;
+    align-self: center;
+    justify-content: space-around;
+}
+
+.object-field{
+    width: 60px;
+    height: 60px;
+    align-self: center;
+}
+
+.object-field > .unity-object-field__input{
+    width: 60px;
+    background-image: none;
+}
+
+
+.object-field > .unity-object-field__input > .unity-object-field__selector{
+    margin-left: -20px;
+    margin-top: 40px;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    max-width: 20px;
+    min-height: 20px;
+    max-height: 20px;
+}
+
+.object-field > .unity-object-field__input > .unity-object-field-display{
+    width: 58px;
+    min-width: 58px;
+    max-width: 58px;
+    height: 58px;
+    min-height: 58px;
+    max-height: 58px;
+}
+
+.object-field > .unity-object-field__input > .unity-object-field-display > .unity-image{
+    visibility: hidden;
+    overflow: hidden;
+}
+
+.object-field > .unity-object-field__input > .unity-object-field-display > .unity-label{
+    visibility: hidden;
+    overflow: hidden;
+}
+
+.delete-button{
+    width: 60px;
+}
+
+.delete-button-yes{
+    width: 28px;
+    visibility: hidden;
+    display: none;
+}
+
+.delete-button-no{
+    width: 28px;
+    visibility: hidden;
+    display: none;
+}
