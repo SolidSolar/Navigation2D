@@ -1,4 +1,4 @@
-﻿namespace Navigation2D.Data.NavMath
+﻿namespace Navigation2D.NavMath
 {
     public class Edge
     {

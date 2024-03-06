@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Navigation2D.Data.NavMath
+namespace Navigation2D.NavMath
 {
     [Serializable]
     public class Shape2D
