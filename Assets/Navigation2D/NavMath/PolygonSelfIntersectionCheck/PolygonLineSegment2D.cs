@@ -11,7 +11,7 @@ namespace Navigation2D.NavMath.PolygonSelfIntersectionCheck
             return String.Format("{0}->{1}", P1, P2);
         }
 
-        public bool Contains(Vector2 target, bool inclusive = true)
+        public new bool Contains(Vector2 target, bool inclusive = true)
         {
             if (Line2D.TryJoin(P1, P2, out var line))
             {
@@ -24,7 +24,7 @@ namespace Navigation2D.NavMath.PolygonSelfIntersectionCheck
             return false;
         }
         
-        public bool TryIntersect(PolygonLineSegment2D other, out Vector2 point, bool inclusive = true)
+        public new bool TryIntersect(PolygonLineSegment2D other, out Vector2 point, bool inclusive = true)
         {
             point = Vector2.zero;
             if (Math.Abs(P1.x - other.P2.x) <  float.Epsilon && Math.Abs(P1.y - other.P2.y) <  float.Epsilon ||

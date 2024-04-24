@@ -7,6 +7,7 @@ using Navigation2D.Editor.NavigationEditor;
 using Navigation2D.NavMath;
 using Navigation2D.NavMath.LocalMinima;
 using Navigation2D.NavMath.PolygonClipping;
+using Navigation2D.NavMath.VisibilityGraph;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
@@ -118,6 +119,22 @@ namespace Navigation2D.Editor.DebugTools
         }
         
         [TestingToolkitItem]
+        void IsIntersecting()
+        {
+            Button button = new Button(() =>
+            {
+                var collider = ((GameObject) Selection.activeObject)?.GetComponent<PolygonCollider2D>();
+                
+                if(!collider)
+                    return;
+                
+                Debug.Log($"Polygon self-intersects: {PolygonSelfIntersectionCheck.HasIntersections(collider.points.ToList())}");
+            });
+            button.text = "Is intersecting";
+            _list.Add(button);
+        }
+        
+        [TestingToolkitItem]
         void LogNumbers()
         {
             Button button = new Button(() =>
@@ -189,6 +206,47 @@ namespace Navigation2D.Editor.DebugTools
             button.text = "MergeShapes";
             _list.Add(button);
         }
+        
+        [TestingToolkitItem]
+        void GenerateVisibilityGraph()
+        {
+            Button button = new Button(() =>
+            {
+                var colliders = Selection.objects?.Select(x=> ((GameObject)x).GetComponent<PolygonCollider2D>()).ToList();
+                TestingToolkit.DrawVisibilityGraph(colliders.Select(x=>new Shape2D(x.transform.position,  x.points.ToList())).ToList());
+                
+            });
+            
+            button.text = "GenerateVisibilityGraph";
+            _list.Add(button);
+        }
+        
+        [TestingToolkitItem]
+        void GenerateOutlineShape()
+        {
+            Button button = new Button(() =>
+            {
+                var colliders = Selection.objects?.Select(x=> ((GameObject)x).GetComponent<PolygonCollider2D>()).ToList();
+                TestingToolkit.DrawOutlineShape(new Shape2D( colliders[0].transform.position, colliders[0].points.ToList()));
+            });
+            
+            button.text = "GenerateOutlineShape";
+            _list.Add(button);
+        }
+        
+        [TestingToolkitItem]
+        void OutlineMergeVisibility()
+        {
+            Button button = new Button(() =>
+            {
+                var colliders = Selection.objects?.Select(x=> ((GameObject)x).GetComponent<PolygonCollider2D>()).ToList();
+                TestingToolkit.OutlineMergeVisibiltiy(colliders.Select(x=>new Shape2D( x.transform.position, x.points.ToList())).ToList());
+            });
+            
+            button.text = "OutlineMergeVisibility";
+            _list.Add(button);
+        }
+
 
         [TestingToolkitItem]
         void TestLineNumbers()

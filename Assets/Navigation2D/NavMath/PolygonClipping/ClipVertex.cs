@@ -18,6 +18,8 @@ namespace Navigation2D.NavMath.PolygonClipping
         
         public VertexType type = VertexType.None;
         public OverlapType overlapType = OverlapType.None;
+        public IntersectionType intersectionType = IntersectionType.None;
+        public Vector2 intersectionPoint;
         
         public ClipVertex neighbor;
 

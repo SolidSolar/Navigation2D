@@ -1,4 +1,5 @@
 ﻿using System;
+using Navigation2D.NavMath.PolygonSelfIntersectionCheck;
 using UnityEngine;
 
 namespace Navigation2D.NavMath
@@ -64,6 +65,46 @@ namespace Navigation2D.NavMath
             return (val > 0) ? Orientation.Clockwise : Orientation.Counterclockwise;
         }
 
+        public virtual bool TryIntersect(LineSegment2D other, out Vector2 point, bool inclusive = true)
+        {
+            point = Vector2.zero;
+            if (Math.Abs(P1.x - other.P2.x) <  float.Epsilon && Math.Abs(P1.y - other.P2.y) <  float.Epsilon ||
+                Math.Abs(P2.x - other.P1.x) <  float.Epsilon && Math.Abs(P2.y - other.P1.y) <  float.Epsilon ||
+                Math.Abs(P1.x - other.P1.x) <  float.Epsilon && Math.Abs(P1.y - other.P1.y) <  float.Epsilon ||
+                Math.Abs(P2.x - other.P2.x) <  float.Epsilon && Math.Abs(P2.y - other.P2.y) <  float.Epsilon)
+            {
+                return false;
+            }
+
+            
+            if (Line2D.TryJoin(P1, P2, out Line2D thisLine) 
+                && Line2D.TryJoin(other.P1, other.P2, out Line2D otherLine))
+            {
+                if (Line2D.TryMeet(thisLine, otherLine, out point))
+                {
+                    bool contains = Contains(point, inclusive) && other.Contains(point, inclusive);
+                    return contains;
+                }
+            }
+            
+            return false;
+        }
+
+        public bool Contains(Vector2 target, bool inclusive = true)
+        {
+            var Epsilon = 0.0000001f;
+            
+            if (Line2D.TryJoin(P1, P2, out var line))
+            {
+                target = line.Project(target);
+                Vector2 dir = P2 - P1;
+                dir.Normalize();
+                float t = Vector2.Dot(dir, target - P1) / Vector2.Dot(dir, P2 - P1);
+                return inclusive ? t >= 0 && t <= 1 : t >  Epsilon && t < 1 -  Epsilon;
+            }
+            return false;
+        }
+        
         public virtual int CompareTo(LineSegment2D other)
         {
             if( this == other ) 

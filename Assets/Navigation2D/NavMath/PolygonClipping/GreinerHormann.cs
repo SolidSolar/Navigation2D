@@ -26,179 +26,203 @@ namespace Navigation2D.NavMath.PolygonClipping
             //Step 1. Find intersection points
             //Need to test if we have found an intersection point, if none is found, the polygons dont intersect, or one polygon is inside the other
             bool hasFoundIntersection = false;
-            
-            var start = poly[1];
-            var polyCur = start;
 
-            do
-            {
-                ClipVertex currentVertex = polyCur;
-                
-                Vector2 a = polyCur.coordinate;
-    
-                Vector2 b = polyCur.next.coordinate;
-                
-                if (a == b)
-                {
-                    polyCur = polyCur.next;
-                    continue;
-                }
-                
-                var clipStart = clipPoly[1];
-                var clipCur = clipStart;
-
-                do
-                {
-                    Vector2 c = clipCur.coordinate;
-    
-                    Vector2 d = clipCur.next.coordinate;
-
-                    if (c == d)
-                    {
-                        clipCur = clipCur.next;
-                        continue;
-                    }
-                    
-                    //Are these lines intersecting?
-                    var intersectionPoints = new List<Vector2>();
-                    var type = Intersections.GetIntersectionType(a, b, c, d, out intersectionPoints);
-                    
-                    Vector2 intersectionPoint2D;
-                    ClipVertex vertexOnPolygon;
-                    ClipVertex vertexOnClipPolygon;
-                    Debug.Log(type);
-                    if (type == IntersectionType.XIntersection)
-                    {
-                        //Debug.DrawLine(a, b, Color.blue, 3f);
-                        //Debug.DrawLine(c, d, Color.yellow, 3f);
-                    }
-
-                    if ( !polyCur.newlyAdded &&  !polyCur.next.newlyAdded && !clipCur.newlyAdded && !clipCur.next.newlyAdded )
-                    {
-                        switch (type)
-                        {
-                            case IntersectionType.XIntersection:
-                                intersectionPoint2D = intersectionPoints[0];
-                                vertexOnPolygon = InsertIntersectionVertex(intersectionPoint2D, polyCur);
-                                vertexOnClipPolygon = InsertIntersectionVertex(intersectionPoint2D, clipCur);
-                                vertexOnPolygon.neighbor = vertexOnClipPolygon;
-                                vertexOnClipPolygon.neighbor = vertexOnPolygon;
-                                hasFoundIntersection = true;
-                                break;
-                            case IntersectionType.TIntersectionL:
-                                vertexOnPolygon = polyCur;
-                                vertexOnClipPolygon = GetVertexCopy(vertexOnPolygon);
-                                vertexOnClipPolygon.isIntersection = true;
-                                vertexOnPolygon.isIntersection = true;
-
-                                vertexOnClipPolygon.neighbor = vertexOnPolygon;
-                                vertexOnPolygon.neighbor = vertexOnClipPolygon;
-
-                                vertexOnClipPolygon.prev = clipCur;
-                                vertexOnClipPolygon.next = clipCur.next;
-                                clipCur.next = vertexOnClipPolygon;
-                                vertexOnClipPolygon.next.prev = vertexOnClipPolygon;
-                                hasFoundIntersection = true;
-                                break;
-                            case IntersectionType.TIntersectionR:
-                                vertexOnPolygon = clipCur;
-                                vertexOnClipPolygon = GetVertexCopy(clipCur);
-                                vertexOnClipPolygon.isIntersection = true;
-                                vertexOnPolygon.isIntersection = true;
-                                vertexOnClipPolygon.neighbor = vertexOnPolygon;
-                                vertexOnPolygon.neighbor = vertexOnClipPolygon;
-
-                                vertexOnClipPolygon.prev = polyCur;
-                                vertexOnClipPolygon.next = polyCur.next;
-                                polyCur.next = vertexOnClipPolygon;
-                                vertexOnClipPolygon.next.prev = vertexOnClipPolygon;
-                                hasFoundIntersection = true;
-                                break;
-                            case IntersectionType.VIntersection:
-                                vertexOnPolygon = polyCur;
-                                vertexOnClipPolygon = clipCur;
-                                vertexOnClipPolygon.isIntersection = true;
-                                vertexOnPolygon.isIntersection = true;
-                                vertexOnPolygon.neighbor = vertexOnClipPolygon;
-                                vertexOnClipPolygon.neighbor = vertexOnPolygon;
-                                hasFoundIntersection = true;
-                                break;
-                            case IntersectionType.XOverlap:
-                                vertexOnPolygon = InsertIntersectionVertex(intersectionPoints[1], currentVertex);
-
-                                vertexOnClipPolygon = InsertIntersectionVertex(intersectionPoints[0], clipCur);
-
-                                vertexOnPolygon.neighbor = vertexOnClipPolygon;
-                                vertexOnClipPolygon.neighbor = vertexOnPolygon;
-                                hasFoundIntersection = true;
-                                break;
-                            case IntersectionType.TOverlapL:
-                                vertexOnPolygon = GetVertexCopy(polyCur);
-                                vertexOnPolygon.isIntersection = true;
-
-                                vertexOnPolygon.neighbor = polyCur;
-                                polyCur.neighbor = vertexOnPolygon;
-                                vertexOnPolygon.prev = clipCur;
-                                vertexOnPolygon.next = clipCur.next;
-                                vertexOnPolygon.next.prev = vertexOnPolygon;
-                                clipCur.next = vertexOnPolygon;
-
-                                hasFoundIntersection = true;
-                                break;
-                            case IntersectionType.TOverlapR:
-                                vertexOnPolygon = GetVertexCopy(clipCur);
-                                vertexOnPolygon.isIntersection = true;
-
-                                vertexOnPolygon.neighbor = clipCur;
-                                clipCur.neighbor = vertexOnPolygon;
-                                vertexOnPolygon.prev = polyCur;
-                                vertexOnPolygon.next = polyCur.next;
-                                vertexOnPolygon.next.prev = vertexOnPolygon;
-                                polyCur.next = vertexOnPolygon;
-                                hasFoundIntersection = true;
-                                break;
-                            case IntersectionType.VOverlap:
-                                vertexOnPolygon = polyCur;
-
-                                vertexOnClipPolygon = clipCur;
-                                vertexOnPolygon.neighbor = vertexOnClipPolygon;
-                                vertexOnClipPolygon.neighbor = vertexOnPolygon;
-                                vertexOnClipPolygon.isIntersection = true;
-                                vertexOnPolygon.isIntersection = true;
-                                hasFoundIntersection = true;
-                                break;
-                        }
-                    }
-
-                    clipCur = clipCur.next;
-                }while (clipStart != clipCur ); 
-
-                polyCur = polyCur.next;
-            } while (start != polyCur);
-
-            
+            var polyEdges = new List<ClipEdge>();
             for (int i = 0; i < poly.Count; i++)
             {
-                
+                polyEdges.Add(new ClipEdge()
+                {
+                    vertexes = new List<Tuple<ClipVertex, float>>()
+                    {
+                        new(poly[i], 0),
+                        new(poly[NavMath.ClampListIndex(i+1, poly.Count)], 1)
+                    }
+                });
             }
-            
+
+            bool shown = false;
+            int outerCounter = 0;
+            var clipEdges = new List<ClipEdge>();
+            for (int i = 0; i < clipPoly.Count; i++)
+            {
+                clipEdges.Add(new ClipEdge()
+                {
+                    vertexes = new List<Tuple<ClipVertex, float>>()
+                    {
+                        new(clipPoly[i], 0),
+                        new(clipPoly[NavMath.ClampListIndex(i+1, clipPoly.Count)], 1)
+                    }
+                });
+            }
+
+
+            for (int i = 0; i < polyEdges.Count; i++)
+            {
+                var polyEdge = polyEdges[i];
+                
+                for (int j = 0; j < clipEdges.Count; j++)
+                {
+                    var clipEdge = clipEdges[j];
+                    
+                    ClipVertex polyCur = poly[i];
+                    ClipVertex clipCur = clipPoly[j];
+                    
+
+                    //Are these lines intersecting?
+                    var intersectionPoints = new List<Vector2>();
+                    
+                    var type = Intersections.GetIntersectionType(
+                        polyEdge.vertexes[0].Item1.coordinate, 
+                        polyEdge.vertexes[^1].Item1.coordinate, 
+                        clipEdge.vertexes[0].Item1.coordinate, 
+                        clipEdge.vertexes[^1].Item1.coordinate, 
+                        out intersectionPoints);
+
+                    if (type != IntersectionType.None)
+                    {
+                        polyCur = polyEdge.GetClosestVertex(intersectionPoints[0]);
+                        clipCur = clipEdge.GetClosestVertex(intersectionPoints[intersectionPoints.Count > 1 ? 1 : 0]);
+                    }
+
+
+                    Debug.Log(type);
+                    ClipVertex vertexOnPolygon;
+                    ClipVertex vertexOnClipPolygon;
+
+                    switch (type)
+                    {
+                        case IntersectionType.XIntersection:
+                            vertexOnPolygon = InsertIntersectionVertex(intersectionPoints[0], polyCur);
+                            polyEdge.AddVertex(vertexOnPolygon);
+                            vertexOnClipPolygon = InsertIntersectionVertex(intersectionPoints[0], clipCur);
+                            clipEdge.AddVertex(vertexOnClipPolygon);
+                            vertexOnPolygon.neighbor = vertexOnClipPolygon;
+                            vertexOnClipPolygon.neighbor = vertexOnPolygon;
+                            hasFoundIntersection = true;
+                            break;
+                        case IntersectionType.TIntersectionL:
+                            vertexOnPolygon = polyCur;
+                            vertexOnClipPolygon = GetVertexCopy(vertexOnPolygon);
+                            clipEdge.AddVertex(vertexOnPolygon);
+                            vertexOnClipPolygon.isIntersection = true;
+                            vertexOnPolygon.isIntersection = true;
+
+                            vertexOnClipPolygon.neighbor = vertexOnPolygon;
+                            vertexOnPolygon.neighbor = vertexOnClipPolygon;
+
+                            vertexOnClipPolygon.prev = clipCur;
+                            vertexOnClipPolygon.next = clipCur.next;
+                            clipCur.next = vertexOnClipPolygon;
+                            vertexOnClipPolygon.next.prev = vertexOnClipPolygon;
+                            hasFoundIntersection = true;
+                            break;
+                        case IntersectionType.TIntersectionR:
+                            vertexOnPolygon = clipCur;
+                            vertexOnClipPolygon = GetVertexCopy(clipCur);
+                            polyEdge.AddVertex(vertexOnClipPolygon);
+                            vertexOnClipPolygon.isIntersection = true;
+                            vertexOnPolygon.isIntersection = true;
+                            vertexOnClipPolygon.neighbor = vertexOnPolygon;
+                            vertexOnPolygon.neighbor = vertexOnClipPolygon;
+
+                            vertexOnClipPolygon.prev = polyCur;
+                            vertexOnClipPolygon.next = polyCur.next;
+                            polyCur.next = vertexOnClipPolygon;
+                            vertexOnClipPolygon.next.prev = vertexOnClipPolygon;
+                            hasFoundIntersection = true;
+                            break;
+                        case IntersectionType.VIntersection:
+                            vertexOnPolygon = polyCur;
+                            vertexOnClipPolygon = clipCur;
+                            vertexOnClipPolygon.isIntersection = true;
+                            vertexOnPolygon.isIntersection = true;
+                            vertexOnPolygon.neighbor = vertexOnClipPolygon;
+                            vertexOnClipPolygon.neighbor = vertexOnPolygon;
+                            hasFoundIntersection = true;
+                            break;
+                        case IntersectionType.XOverlap:
+                            vertexOnClipPolygon = GetVertexCopy(polyCur);
+                            clipEdge.AddVertex(vertexOnClipPolygon);
+                            vertexOnPolygon = GetVertexCopy(clipCur);
+                            polyEdge.AddVertex(vertexOnClipPolygon);
+                            vertexOnClipPolygon.isIntersection = true;
+                            vertexOnPolygon.isIntersection = true;
+
+                            vertexOnClipPolygon.neighbor = vertexOnPolygon;
+                            vertexOnPolygon.neighbor = vertexOnClipPolygon;
+
+                            vertexOnClipPolygon.prev = clipCur;
+                            vertexOnClipPolygon.next = clipCur.next;
+                            clipCur.next = vertexOnClipPolygon;
+                            vertexOnClipPolygon.next.prev = vertexOnClipPolygon;
+
+                            vertexOnPolygon.prev = polyCur;
+                            vertexOnPolygon.next = polyCur.next;
+                            polyCur.next = vertexOnPolygon;
+                            vertexOnPolygon.next.prev = polyCur;
+
+                            hasFoundIntersection = true;
+                            break;
+                        case IntersectionType.TOverlapL:
+                            vertexOnPolygon = GetVertexCopy(polyCur);
+                            clipEdge.AddVertex(vertexOnPolygon);
+                            vertexOnPolygon.isIntersection = true;
+
+                            vertexOnPolygon.neighbor = polyCur;
+                            polyCur.neighbor = vertexOnPolygon;
+                            vertexOnPolygon.prev = clipCur;
+                            vertexOnPolygon.next = clipCur.next;
+                            vertexOnPolygon.next.prev = vertexOnPolygon;
+                            clipCur.next = vertexOnPolygon;
+
+                            hasFoundIntersection = true;
+                            break;
+                        case IntersectionType.TOverlapR:
+                            vertexOnPolygon = GetVertexCopy(clipCur);
+                            polyEdge.AddVertex(vertexOnPolygon);
+                            vertexOnPolygon.isIntersection = true;
+
+                            vertexOnPolygon.neighbor = clipCur;
+                            clipCur.neighbor = vertexOnPolygon;
+                            vertexOnPolygon.prev = polyCur;
+                            vertexOnPolygon.next = polyCur.next;
+                            vertexOnPolygon.next.prev = vertexOnPolygon;
+                            polyCur.next = vertexOnPolygon;
+                            hasFoundIntersection = true;
+                            break;
+                        case IntersectionType.VOverlap:
+                            vertexOnPolygon = polyCur;
+
+                            vertexOnClipPolygon = clipCur;
+                            vertexOnPolygon.neighbor = vertexOnClipPolygon;
+                            vertexOnClipPolygon.neighbor = vertexOnPolygon;
+                            vertexOnClipPolygon.isIntersection = true;
+                            vertexOnPolygon.isIntersection = true;
+                            hasFoundIntersection = true;
+                            break;
+                    }
+                }
+            }
+
             //If the polygons are intersecting
             if (hasFoundIntersection)
             {
                 MarkEntryExit(poly, clipPoly, union);
                 //MarkEntryExit(clipPoly, poly, union);
 
-                //var outsidePolyVertices = GetNewClippedPolygon(poly, true);
-                //foreach (var p in outsidePolyVertices)
-                //{
-                //    var lis = p;
-                //    for (int i = 0; i < lis.Count-1; i++)
-                //    {
-                //        Debug.DrawLine(lis[i], lis[i+1], Color.red, 5f);
-                //    }
-                //    
-                //    Debug.Log(lis.Count);
-                //}
+                var outsidePolyVertices = GetNewClippedPolygon(poly, true);
+                foreach (var p in outsidePolyVertices)
+                {
+                    var lis = p;
+                    for (int i = 0; i < lis.Count-1; i++)
+                    {
+                        Debug.DrawLine(lis[i], lis[i+1], Color.red, 5f);
+                    }
+                    
+                    Debug.DrawLine(lis[^1], lis[0], Color.red, 5f);
+                    
+                    Debug.Log(lis.Count);
+                }
             }
             //Check if one polygon is inside the other
             else
@@ -276,11 +300,7 @@ namespace Navigation2D.NavMath.PolygonClipping
                         V.isIntersection = false;        // mark visited vertices
                     }
 
-                    if (V.coordinate == I.coordinate)
-                    {
-                        Debug.Log("kekw " + (V != I) + " " + (V.neighbor != I) + " " + intersections.Count(x=>x.isIntersection));
-                    }
-                } while (V != I && intersections.Count(x=>x.isIntersection) != 0);                   // the result polygon component is complete, 
+                } while (V != I);                   // the result polygon component is complete, 
                 // if we are back to the initial vertex I
                 finalPolygon.Add(R);
             }
@@ -441,7 +461,6 @@ namespace Navigation2D.NavMath.PolygonClipping
             bool shown = false;
             foreach (var item in pIdx)
             {
-                
                 var p = item;
                 var q = item.neighbor;
 
@@ -521,13 +540,6 @@ namespace Navigation2D.NavMath.PolygonClipping
                     }
                     else
                     {
-                        if (!shown)
-                        {
-                            //Debug.DrawLine(p.coordinate, q.prev.coordinate, Color.magenta, 3f);
-                            //Debug.DrawLine(p.coordinate, q.next.coordinate, Color.magenta, 3f);
-                            shown = true;
-                        }
-
                         p.type = VertexType.Bouncing;
                         q.type = VertexType.Bouncing;
                     }
