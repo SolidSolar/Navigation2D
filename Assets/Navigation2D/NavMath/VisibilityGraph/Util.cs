@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Navigation
+namespace Navigation2D
 {
     // Taken from:
     // http://stackoverflow.com/questions/5716423/c-sharp-sortable-collection-which-allows-duplicate-keys
@@ -44,15 +44,11 @@ namespace Navigation
     {
         public static readonly DuplicateKeyComparer<float> DuplicateKeyComparer;
         private static readonly SortedList<float, Vertex> AngleToPoint; // Cached for CW sorting
-        private static readonly SortedDictionary<float, Vertex> AngleToPointDict; // Cached for CW sorting
-        private static readonly VertexComparer VertexComparer = new VertexComparer();
-        private static readonly FloatComparer FloatComparer = new FloatComparer();
 
         static Util()
         {
             DuplicateKeyComparer = new DuplicateKeyComparer<float>();
             AngleToPoint = new SortedList<float, Vertex>(DuplicateKeyComparer);
-            AngleToPointDict = new SortedDictionary<float, Vertex>(FloatComparer);
         }
 
         public static float CalculateAngle(Vector2 from, Vector2 to)
@@ -126,8 +122,6 @@ namespace Navigation
             return false;
         }
 
-        // Taken from:
-        // http://stackoverflow.com/questions/849211/shortest-distance-between-a-point-and-a-line-segment
         public static float PointLineSegmentDistance(float v1X, float v1Z, float v2X, float v2Z, float pX, float pZ)
         {
             var lenSqr = (v1X - v2X) * (v1X - v2X) + (v1Z - v2Z) * (v1Z - v2Z);
@@ -142,25 +136,12 @@ namespace Navigation
 
         public static Vertex[] SortClockwise(float refX, float refZ, List<Vertex> points)
         {
-            // TODO: This should be faster. Why is it not? Is it Unity's ancient mono version?
-            //VertexComparer.Reference = reference;
-            //var pointsArr = points.ToArray();
-            //Array.Sort(pointsArr, VertexComparer);
-            //return pointsArr;
-
             AngleToPoint.Clear();
             for (int i = 0; i < points.Count; i++)
             {
-                AngleToPoint.Add(CalculateAngle(1f, 0f, points[i].X - refX, points[i].Z - refZ), points[i]);
+                AngleToPoint.Add(CalculateAngle(1f, 0f, points[i].X - refX, points[i].Y - refZ), points[i]);
             }
             return AngleToPoint.Values.ToArray();
-
-            //AngleToPointDict.Clear();
-            //for (int i = 0; i < points.Count; i++)
-            //{
-            //    AngleToPointDict.Add(CalculateAngle(Vector3.right, points[i].Position - reference), points[i]);
-            //}
-            //return AngleToPointDict.Values.ToArray();
         }
 
         public static bool Left(float v1X, float v1Z, float v2X, float v2Z, float pX, float pZ)

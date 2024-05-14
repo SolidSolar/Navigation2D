@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using Utils;
 
 namespace Navigation2D.NavMath.PolygonSelfIntersectionCheck
 {

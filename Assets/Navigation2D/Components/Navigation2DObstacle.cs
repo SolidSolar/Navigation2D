@@ -7,12 +7,6 @@ namespace Navigation2D.Components
     {
         [SerializeField]
         private Collider2D _sourceCollider2D;
-        [SerializeField]
         
-        
-        private void OnValidate()
-        {
-            
-        }
     }
 }

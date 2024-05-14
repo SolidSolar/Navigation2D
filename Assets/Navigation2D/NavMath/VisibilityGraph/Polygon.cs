@@ -1,18 +1,27 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Navigation
+namespace Navigation2D
 {
+    [Serializable]
     public class Polygon
     {
-        public readonly List<Vertex> Vertices;
-        public readonly Edge[] Edges;
-        public float RightmostX { get; private set; }
-        public float TopmostZ { get; private set; }
-        public float BottommostZ { get; private set; }
+        [SerializeReference]
+        public List<Vertex> Vertices;
+        [SerializeReference]
+        public Edge[] Edges;
+        public float RightmostX;
+        public float TopmostZ;
+        public float BottommostZ;
 
         public Polygon(Vector2[] vertices)
+        {
+            BuildPolygon(vertices);
+        }
+
+        public void BuildPolygon(Vector2[] vertices)
         {
             RightmostX = float.MinValue;
             TopmostZ = float.MinValue;
@@ -59,7 +68,7 @@ namespace Navigation
 
             Edges[vertices.Length - 1] = eLast;
         }
-
+        
         public bool IntersectsWith(float v1X, float v1Z, float v2X, float v2Z)
         {
             for (int i = 0; i < Edges.Length; i++)

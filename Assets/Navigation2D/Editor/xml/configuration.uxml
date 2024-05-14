@@ -1,0 +1,31 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement name="container" style="width: 100%; height: 100%;">
+        <ui:DropdownField index="-1" choices="System.Collections.Generic.List`1[System.String]" name="toolbar" />
+        <ui:VisualElement name="agentMenu" style="height: 100%; display: flex;">
+            <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" style="width: 100%; height: 100%;">
+                <ui:ListView focusable="true" name="agentsList" style="width: 100%; height: auto; min-height: auto; max-height: 384px;" />
+                <ui:VisualElement style="flex-direction: row-reverse;">
+                    <ui:Button text="-" display-tooltip-when-elided="true" name="remove" />
+                    <ui:Button text="+" display-tooltip-when-elided="true" name="add" />
+                </ui:VisualElement>
+                <ui:VisualElement name="agentInfo">
+                    <ui:TextField picking-mode="Ignore" label="Name" name="name" is-delayed="true" />
+                    <uie:FloatField label="Radius" value="0.5" name="radius" is-delayed="true" />
+                </ui:VisualElement>
+            </ui:ScrollView>
+        </ui:VisualElement>
+        <ui:VisualElement name="bakeMenu" style="height: 100%; display: flex;">
+            <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" style="width: 100%; height: 100%;">
+                <ui:ListView focusable="true" name="areasList" style="width: 100%; height: auto; min-height: 0;" />
+                <ui:VisualElement style="flex-direction: row-reverse;">
+                    <ui:Button text="-" display-tooltip-when-elided="true" name="remove" />
+                    <ui:Button text="+" display-tooltip-when-elided="true" name="add" />
+                </ui:VisualElement>
+                <ui:VisualElement name="areaInfo">
+                    <ui:TextField picking-mode="Ignore" label="Name" name="name" />
+                </ui:VisualElement>
+            </ui:ScrollView>
+            <ui:Button text="Bake" display-tooltip-when-elided="true" name="bake" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

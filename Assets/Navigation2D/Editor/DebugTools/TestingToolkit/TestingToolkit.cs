@@ -1,11 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
-using Navigation;
 using Navigation2D.NavMath;
 using Navigation2D.Data.Utility;
-using Navigation2D.NavMath.PolygonClipping;
 using Navigation2D.NavMath.PolygonOutline;
-using Navigation2D.NavMath.VisibilityGraph;
 using UnityEngine;
 
 namespace Navigation2D.Editor.DebugTools
@@ -31,7 +27,7 @@ namespace Navigation2D.Editor.DebugTools
             }
         }
 
-        public static void DrawVisibilityGraph(List<Shape2D> obstacles)
+        public static void DrawVisibilityGraph(List<Shape2D> obstacles, Bounds graphBounds = default)
         {
             var graph = new VisibilityGraph();
 
@@ -39,10 +35,21 @@ namespace Navigation2D.Editor.DebugTools
             {
                 graph.AddPolygon(new Polygon(s.GlobalPoints.ToArray()));
             }
-            
-            foreach (var kvp in graph._adjList)
+
+            if (graphBounds != default)
             {
-                foreach (var v in kvp.Value)
+                graph.AddPolygon(new Polygon(new Vector2[]
+                {
+                    new(graphBounds.min.x, graphBounds.min.y), new(graphBounds.min.x + graphBounds.extents.x*2, graphBounds.min.y),
+                    new(graphBounds.max.x, graphBounds.max.y), new(graphBounds.max.x - graphBounds.extents.x*2, graphBounds.max.y)
+                }));
+            }
+
+            var adjMatrix = graph.GetAdjacencyMatrix();
+            
+            foreach (var kvp in adjMatrix)
+            {
+                foreach (var v in kvp.Value.list)
                 {
                     Debug.DrawLine(kvp.Key.Position, v.Position, Color.blue, 15f);
                 }
@@ -57,6 +64,26 @@ namespace Navigation2D.Editor.DebugTools
                 Debug.DrawLine(result.Points[z] + result.Center, result.Points[z + 1] + result.Center, Color.red, 10f);
             }
             Debug.DrawLine(result.Points[^1] + result.Center, result.Points[0] + result.Center, Color.red, 10f);
+        }
+
+        public static void GenerateVisibilityGraphAndFindRoute(List<Shape2D> obstacles, Vector2 pos1, Vector2 pos2, Bounds graphBounds = default)
+        {
+            var graph = NavUtility.GenerateVisibilityGraph(obstacles, 0.06f, graphBounds);
+
+            var adjMatrix = graph.GetAdjacencyMatrix();
+            foreach (var kvp in adjMatrix)
+            {
+                foreach (var v in kvp.Value.list)
+                {
+                    Debug.DrawLine(kvp.Key.Position, v.Position, Color.blue, 15f);
+                }
+            }
+            var  path= graph.GetPath(pos1, pos2);
+            
+            for (int i = 0; i < path.Length-1; i++)
+            {
+                Debug.DrawLine(path[i], path[i+1], Color.cyan, 25f);
+            }
         }
 
         public static void OutlineMergeVisibiltiy(List<Shape2D> shapes)
@@ -88,10 +115,10 @@ namespace Navigation2D.Editor.DebugTools
             }
             
             
-            
-            foreach (var kvp in graph._adjList)
+            var adjMatrix = graph.GetAdjacencyMatrix();
+            foreach (var kvp in adjMatrix)
             {
-                foreach (var v in kvp.Value)
+                foreach (var v in kvp.Value.list)
                 {
                     Debug.DrawLine(kvp.Key.Position, v.Position, Color.blue, 15f);
                 }

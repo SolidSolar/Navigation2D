@@ -85,7 +85,6 @@ namespace Navigation2D.NavMath.PolygonClipping
                     }
 
 
-                    Debug.Log(type);
                     ClipVertex vertexOnPolygon;
                     ClipVertex vertexOnClipPolygon;
 
