@@ -1,25 +1,35 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
-namespace Navigation
+namespace Navigation2D
 {
+    [Serializable]
     public class Vertex
     {
-        public Vector2 Position { get; private set; }
+        [SerializeField]
+        public Vector2 Position;
         public float X => _posX;
-        public float Z => _posZ;
+        public float Y => _posY;
 
         public float NormalX { get; private set; }
-        public float NormalZ { get; private set; }
+        public float NormalY { get; private set; }
 
+        [SerializeField]
         private float _posX;
-        private float _posZ;
+        [SerializeField]
+        private float _posY;
+        [SerializeReference]
         private Edge _edge1;
+        [SerializeReference]
         private Edge _edge2;
-        private readonly Vertex[] _neighbors = new Vertex[2];
-        private readonly Polygon _ownerPolygon;
+        
+        [SerializeReference]
+        public Vertex[] _neighbors = new Vertex[2];
+        [SerializeReference]
+        private Polygon _ownerPolygon;
+        [SerializeField]
         private bool _isConvex;
-
+        
         public Edge Edge1
         {
             get
@@ -46,20 +56,14 @@ namespace Navigation
             }
         }
 
-        public Polygon OwnerPolygon
-        {
-            get { return _ownerPolygon; }
-        }
-
-        public List<Edge> ClockwiseEdges;
-        public List<Edge> CounterclockwiseEdges;
+        public Polygon OwnerPolygon => _ownerPolygon;
 
         public Vertex(Vector2 pos)
         {
             Position = pos;
 
             _posX = Position.x;
-            _posZ = Position.y;
+            _posY = Position.y;
         }
 
         public Vertex(Vector2 pos, Polygon ownerPolygon) : this(pos)
@@ -74,32 +78,14 @@ namespace Navigation
             var p2From = _neighbors[1].Position - Position;
             var p2To = Position - _neighbors[1].Position;
 
-            // Concaveness is determined by the angle between directed edges
             _isConvex = Util.CalculateAngle(p2To, p1From) < 180;
 
-            // Concave vertex normal is found by summation of outgoing edges,
-            // whereas convex one's is found by incoming
             var n = _isConvex
                 ? (p1To.normalized + p2To.normalized).normalized
                 : (p1From.normalized + p2From.normalized).normalized;
 
             NormalX = n.x;
-            NormalZ = n.y;
-            // Note that this normal doesn't change with polygon movement
-        }
-
-        public void WarpTo(Vector2 pos)
-        {
-            Position = pos;
-            _posX = Position.x;
-            _posZ = Position.y;
-        }
-
-        public void Move(Vector2 moveVec)
-        {
-            Position += moveVec;
-            _posX = Position.x;
-            _posZ = Position.y;
+            NormalY = n.y;
         }
 
         public bool IsNeighborWith(Vertex v)
@@ -110,11 +96,11 @@ namespace Navigation
         public bool IsGoingBetweenNeighbors(float oX, float oZ)
         {
             // Determine if given line segment is between this vertex's neighbors
-            var btwn = Util.Left(X, Z, _neighbors[0].X, _neighbors[0].Z, oX, oZ)
-                       ^ Util.Left(X, Z, _neighbors[1].X, _neighbors[1].Z, oX, oZ);
+            var btwn = Util.Left(X, Y, _neighbors[0].X, _neighbors[0].Y, oX, oZ)
+                       ^ Util.Left(X, Y, _neighbors[1].X, _neighbors[1].Y, oX, oZ);
 
             // ... but we want the one going through the polygon
-            var dot = (oX - X) * NormalX + (oZ - Z) * NormalZ;
+            var dot = (oX - X) * NormalX + (oZ - Y) * NormalY;
 
             if (_isConvex)
             {
@@ -127,19 +113,18 @@ namespace Navigation
 
         }
 
-        // TODO: Cache those values
-        public Edge[] GetEdgesOnCwSide(float refX, float refZ) // Clockwise
+        public Edge[] GetEdgesOnCwSide(float refX, float refZ) 
         {
             var retVal = new Edge[2];
 
             var x1 = X - refX;
-            var z1 = Z - refZ;
+            var z1 = Y - refZ;
 
             var x2 = _neighbors[0].X - refX;
-            var z2 = _neighbors[0].Z - refZ;
+            var z2 = _neighbors[0].Y - refZ;
 
             var x3 = _neighbors[1].X - refX;
-            var z3 = _neighbors[1].Z - refZ;
+            var z3 = _neighbors[1].Y - refZ;
 
             var cross1 = (x1 * z2) - (x2 * z1);
             var cross2 = (x1 * z3) - (x3 * z1);
@@ -162,13 +147,13 @@ namespace Navigation
             var retVal = new Edge[2];
 
             var x1 = X - refX;
-            var z1 = Z - refZ;
+            var z1 = Y - refZ;
 
             var x2 = _neighbors[0].X - refX;
-            var z2 = _neighbors[0].Z - refZ;
+            var z2 = _neighbors[0].Y - refZ;
 
             var x3 = _neighbors[1].X - refX;
-            var z3 = _neighbors[1].Z - refZ;
+            var z3 = _neighbors[1].Y - refZ;
 
             var cross1 = (x1 * z2) - (x2 * z1);
             var cross2 = (x1 * z3) - (x3 * z1);
@@ -185,7 +170,6 @@ namespace Navigation
 
             return retVal;
         }
-
 
         public override string ToString()
         {

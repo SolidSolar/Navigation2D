@@ -1,0 +1,19 @@
+{
+    "name": "Navigation2DEditor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:9d394143a8e60774abf09e05e5e318a9",
+        "GUID:a7f4dd94b3a10544081997a9ac7057fb"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

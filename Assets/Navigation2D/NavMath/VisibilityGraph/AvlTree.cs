@@ -1,30 +1,7 @@
-﻿///////////////////////////////////////////////////////////////////////
-//// File Name               : AvlTree.cs
-////      Created            : 10 8 2012   22:30
-////      Author             : Costin S
-////
-/////////////////////////////////////////////////////////////////////
+﻿using NUnit.Framework;
+using UnityEngine;
 
-////---------------------------------------
-//// TREE_WITH_PARENT_POINTERS:
-//// Defines whether or not each node in the tree maintains a reference to its parent node.
-//// Only parent pointers traversal is implemented in the code below.
-//// To disable uncomment the following line
-
-#define TREE_WITH_PARENT_POINTERS
-
-////---------------------------------------
-//// TREE_WITH_CONCAT_AND_SPLIT_OPERATIONS: 
-//// Defines whether the tree exposes and implements concatenate and split operations.
-//// 
-//// When concat and split operations are defined, the code defines stored both the Balance and the Height in each node which is obviously not necessary. 
-//// To reduce space, you can do one of two things:
-////      1. The simplest change is to store both Balance and Height in one integer. Balance field needs only 2 bits which lefts 30 bits for the Height field. A tree with a HEIGHT > 2^30 (2 to the power of 30) is very unlikely you will ever build.
-////      2. Simple enough to modify and remove Balance field. Concat and Split were added as an afterthought after the implementation was already done using a Balance field.
-
-#define TREE_WITH_CONCAT_AND_SPLIT_OPERATIONS
-
-namespace Navigation.SelfBalancedTree
+namespace Navigation2D.NavMath.SelfBalancedTree
 {
     using System;
     using System.Collections.Generic;
@@ -35,13 +12,17 @@ namespace Navigation.SelfBalancedTree
     /// Dictionary class.
     /// </summary>
     /// <typeparam name="T">The type of the data stored in the nodes</typeparam>
-    public class AVLTree<T>
+    [Serializable]
+    public class AVLTree<T> : ISerializationCallbackReceiver
     {
         #region Fields
 
+        [SerializeField]
+        private List<NodeData<T>> _nodeData = new();
+        
         private Node<T> Root;
         private IComparer<T> comparer;
-
+        private int _rebuildIndex = 0;
         #endregion
 
         #region Ctor
@@ -94,58 +75,6 @@ namespace Navigation.SelfBalancedTree
             DoNotIncludeSplitValue
         }
 
-        #endregion
-
-        #region Properties
-
-#if TREE_WITH_PARENT_POINTERS
-
-        /// <summary>
-        /// Gets the collection of values in ascending order. 
-        /// Complexity: O(N)
-        /// </summary>
-        public IEnumerable<T> ValuesCollection
-        {
-            get
-            {
-                if (this.Root == null)
-                {
-                    yield break;
-                }
-
-                var p = FindMin(this.Root);
-                while (p != null)
-                {
-                    yield return p.Data;
-                    p = Successor(p);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the collection of values in reverse/descending order. 
-        /// Complexity: O(N)
-        /// </summary>
-        public IEnumerable<T> ValuesCollectionDescending
-        {
-            get
-            {
-                if (this.Root == null)
-                {
-                    yield break;
-                }
-
-                var p = FindMax(this.Root);
-                while (p != null)
-                {
-                    yield return p.Data;
-                    p = Predecesor(p);
-                }
-            }
-        }
-
-#endif
-        
         #endregion
 
         #region Public Methods
@@ -274,66 +203,6 @@ namespace Navigation.SelfBalancedTree
             return false;
         }
 
-#if TREE_WITH_CONCAT_AND_SPLIT_OPERATIONS
-
-        /// <summary>
-        /// Concatenates the elements of the two trees. 
-        /// Precondition: ALL elements of the 'other' argument AVL tree must be LARGER than all elements contained in this instance.
-        /// Complexity: O(log(N1) + log(N2)). See Remarks section below.
-        /// </summary>
-        /// <remarks>
-        /// Complexity: 
-        ///     Assuming height(node1) > height(node2), our procedure runs in height(node1) + height(node2) i.e. O(log(n1)) + O(log(n2)) due to the two calls to findMin/deleteMin (or findMax, deleteMax respectively). 
-        ///     Runs in O(height(node1)) if height(node1) == height(node2).
-        /// Improvements:
-        ///     Performing find/delete in one operation gives O(height(node1)) speed.
-        ///     Furthermore, if storing min value for each subtree, one obtains the theoretical O(height(node1) - height(node2)). 
-        /// </remarks>
-        public AVLTree<T> Concat(AVLTree<T> other)
-        {
-            if (other == null)
-            {
-                return this;
-            }
-
-            var root = Concat(this.Root, other.Root);
-            if (root != null)
-            {
-                return new AVLTree<T>() { Root = root };
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Splits this AVL Tree instance into 2 AVL subtrees using the specified value as the cut/split point.
-        /// The value to split by must exist in the tree.
-        /// This function is destructive (i.e. the current AVL tree instance is not a valid anymore upon return of this function)
-        /// </summary>
-        /// <param name="value">The value to use when splitting this instance.</param>
-        /// <param name="mode">The mode specifying what to do with the value used for splitting. Options are not to include this value in either of the two resulting trees, to include it in the left or to include it in the right tree respectively</param>
-        /// <param name="splitLeftTree">[out] The left avl tree. Upon return, all values of this subtree are less than the value argument.</param>
-        /// <param name="splitRightTree">[out] The right avl tree. Upon return, all values of this subtree are greater than the value argument.</param>
-        /// <returns>a boolean indicating success or failure</returns>
-        public bool Split(T value, SplitOperationMode mode, out AVLTree<T> splitLeftTree, out AVLTree<T> splitRightTree)
-        {
-            splitLeftTree = null;
-            splitRightTree = null;
-
-            Node<T> splitLeftRoot = null, splitRightRoot = null;
-            bool wasFound = false;
-
-            this.Split(this.Root, value, ref splitLeftRoot, ref splitRightRoot, mode, ref wasFound);
-            if (wasFound)
-            {
-                splitLeftTree = new AVLTree<T>() { Root = splitLeftRoot };
-                splitRightTree = new AVLTree<T>() { Root = splitRightRoot };
-            }
-
-            return wasFound;
-        }
-
-#endif
 
         /// <summary>
         /// Returns the height of the tree. 
@@ -352,28 +221,6 @@ namespace Navigation.SelfBalancedTree
         public void Clear()
         {
             this.Root = null;
-        }
-
-        /// <summary>
-        /// Prints this instance.
-        /// </summary>
-        public void Print()
-        {
-            this.Visit((node, level) =>
-            {
-                Console.Write(new string(' ', 2 * level));
-                Console.WriteLine("{0, 6}", node.Data);
-            });
-        }
-
-        internal int GetCount()
-        {
-            int count = 0;
-            this.Visit((node, level) =>
-            {
-                count++;
-            });
-            return count;
         }
 
         #endregion
@@ -1549,21 +1396,10 @@ namespace Navigation.SelfBalancedTree
         {
             #region Properties
 
-            public Node<TElem> Left { get;set; }
-
-            public Node<TElem> Right { get; set; }
-
-            public TElem Data { get; set; }
-
-            public int Balance { get; set; }
-
-#if TREE_WITH_CONCAT_AND_SPLIT_OPERATIONS
-            public int Height { get; set; }
-#endif
-
-#if TREE_WITH_PARENT_POINTERS
-            public Node<TElem> Parent { get; set; }
-#endif
+            public Node<TElem> Left;
+            public Node<TElem> Right;
+            public TElem Data;
+            public int Balance;
 
             #endregion
 
@@ -1580,13 +1416,13 @@ namespace Navigation.SelfBalancedTree
                 {
                     return;
                 }
+                
+                visitor(this, level);
 
                 if (this.Left != null)
                 {
                     this.Left.Visit(visitor, level + 1);
                 }
-
-                visitor(this, level);
 
                 if (this.Right != null)
                 {
@@ -1597,6 +1433,64 @@ namespace Navigation.SelfBalancedTree
             #endregion
         }
 
+        [Serializable]
+        private class NodeData<TElem>
+        {
+            [SerializeReference]
+            public TElem Data;
+            public int Balance;
+            public int Level;
+        }
+        
         #endregion
+        public void OnBeforeSerialize()
+        {
+            _nodeData.Clear();
+            Visit((node, level) =>
+            {
+                UnityEngine.Debug.Log("retarded? ");
+                _nodeData.Add(new NodeData<T>()
+                {
+                    Data = node.Data,
+                    Balance = node.Balance,
+                    Level = level
+                });
+            });
+        }
+
+        public void OnAfterDeserialize()
+        {
+            _rebuildTree(Root);
+            comparer = GetComparer();
+        }
+
+        private void _rebuildTree(Node<T> node)
+        {
+            if(_rebuildIndex == _nodeData.Count-1 || _nodeData.Count == 0)
+                return;
+            node.Data = _nodeData[_rebuildIndex].Data;
+            node.Balance = _nodeData[_rebuildIndex].Balance;
+            
+            if(_rebuildIndex == _nodeData.Count-1)
+                return;
+            
+            if (_nodeData[_rebuildIndex].Level < _nodeData[_rebuildIndex + 1].Level)
+            {
+                node.Left = new Node<T>();
+                _rebuildIndex++;
+                _rebuildTree(node.Left);
+            }
+            
+            if(_rebuildIndex == _nodeData.Count-1)
+                return;
+
+            if (_nodeData[_rebuildIndex].Level == _nodeData[_rebuildIndex + 1].Level)
+            {
+                node.Right = new Node<T>();
+                _rebuildIndex++;
+                _rebuildTree(node.Right);
+            }
+        }
+
     }
 }

@@ -1,0 +1,16 @@
+{
+    "name": "Navigation2D",
+    "rootNamespace": "",
+    "references": [
+        "GUID:9d394143a8e60774abf09e05e5e318a9"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

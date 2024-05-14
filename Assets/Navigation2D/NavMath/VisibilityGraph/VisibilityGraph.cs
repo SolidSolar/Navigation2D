@@ -1,25 +1,31 @@
-﻿using System.Collections.Generic;
-using Navigation.SelfBalancedTree;
+﻿using System;
+using System.Collections.Generic;
+using Navigation2D.NavMath.SelfBalancedTree;
 using UnityEngine;
 
-namespace Navigation
+namespace Navigation2D.NavMath
 {
+    [Serializable]
     public class VisibilityGraph
     {
-        private readonly Polygon _referencePolygon;
-        private readonly AVLTree<Edge> _bst = new AVLTree<Edge>();
-        private readonly List<Polygon> _polygons = new List<Polygon>();
-        private readonly List<Vertex> _allVertices = new List<Vertex>();
-        public readonly Dictionary<Vertex, List<Vertex>> _adjList = new Dictionary<Vertex, List<Vertex>>();
-
-        public VisibilityGraph(Polygon referencePolygon = null)
+        [SerializeField]
+        private AVLTree<Edge> _bst = new AVLTree<Edge>();
+        [SerializeField]
+        private List<Polygon> _polygons = new List<Polygon>();
+        [SerializeField]
+        private List<Vertex> _allVertices = new List<Vertex>();
+        
+        [SerializeField]
+        private DictionaryOfVertexAndListVertex _adjList = new DictionaryOfVertexAndListVertex();
+        [SerializeField]
+        private DictionaryOfVertexAndFloat _distances = new DictionaryOfVertexAndFloat();
+        [SerializeField]
+        private DictionaryOfVertexAndVertex _prevs = new DictionaryOfVertexAndVertex();
+        public Dictionary<Vertex, ReferenceSerializableList<Vertex>> GetAdjacencyMatrix()
         {
-            if (referencePolygon != null)
-            {
-                _referencePolygon = referencePolygon;
-            }
+            return new(_adjList);
         }
-
+        
         public void AddPolygon(Polygon polygon)
         {
             if (_polygons.Contains(polygon))
@@ -32,7 +38,7 @@ namespace Navigation
             {
                 _allVertices.Add(v);
 
-                _adjList.Add(v, new List<Vertex>());
+                _adjList.Add(v, new ReferenceSerializableList<Vertex>());
             }
 
             // Place polygon
@@ -55,6 +61,117 @@ namespace Navigation
             }
         }
 
+        private bool IntersectsWith(float v1X, float v1Z, float v2X, float v2Z)
+        {
+            foreach (var polygon in _polygons)
+            {
+                if (polygon.IntersectsWith(v1X, v1Z, v2X, v2Z))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        
+        public Vector2[] GetPath(Vector2 srcPos, Vector2 destPos)
+        {
+            if (_allVertices.Count < 1 // No vertices in graph
+                || !IntersectsWith(srcPos.x, srcPos.y, destPos.x, destPos.y)) // Doesn't intersect with any polygon
+            {
+                Debug.Log(IntersectsWith(srcPos.x, srcPos.y, destPos.x, destPos.y));
+                return new[] { srcPos, destPos };
+            }
+
+            // Source and destination points are temporarily in the graph
+            var srcVertex = new Vertex(srcPos);
+            var destVertex = new Vertex(destPos);
+            _adjList.Add(srcVertex, new ReferenceSerializableList<Vertex>());
+            _adjList.Add(destVertex, new ReferenceSerializableList<Vertex>());
+
+            CalculateVisiblityForVertex(srcVertex, _allVertices);
+            CalculateVisiblityForVertex(destVertex, _allVertices);
+
+            // Manually set destination's neighbors
+            foreach (var destNeighbor in _adjList[destVertex].list)
+            {
+                _adjList[destNeighbor].list.Add(destVertex);
+            }
+
+            var allVertsCopy = new HashSet<Vertex>(_allVertices); // TODO: Making it a list will be faster?
+            allVertsCopy.Add(srcVertex);
+            allVertsCopy.Add(destVertex);
+
+            // Here be Djikstra
+            _distances.Clear();
+            _prevs.Clear();
+
+            foreach (var vertex in allVertsCopy)
+            {
+                _distances.Add(vertex, float.MaxValue);
+                _prevs.Add(vertex, null);
+            }
+
+            _distances[srcVertex] = 0f;
+
+            while (allVertsCopy.Count > 0)
+            {
+                Vertex u = null;
+                var minDist = float.MaxValue;
+                foreach (var vertex in allVertsCopy)
+                {
+                    if (_distances[vertex] < minDist)
+                    {
+                        minDist = _distances[vertex];
+                        u = vertex;
+                    }
+                }
+
+                if (u == destVertex) // Destination found
+                {
+                    break;
+                }
+
+                allVertsCopy.Remove(u);
+
+                for (var i = 0; i < _adjList[u].list.Count; i++)
+                {
+                    var v = _adjList[u].list[i];
+                
+                    if (!allVertsCopy.Contains(v))
+                    {
+                        continue;
+                    }
+
+                    var altDist = _distances[u] + Vector2.Distance(u.Position, v.Position);  // sqr distance
+                    if (altDist < _distances[v])
+                    {
+                        _distances[v] = altDist;
+                        _prevs[v] = u;
+                    }
+                }
+            }
+
+            var path = new List<Vector2>();
+            var w = destVertex;
+
+            while (_prevs[w] != null)
+            {
+                path.Insert(0, w.Position);
+                w = _prevs[w];
+            }
+            path.Insert(0, w.Position);
+
+            // Remove temp vertices from graph
+            RemoveEdgesOfVertex(srcVertex);
+            RemoveEdgesOfVertex(destVertex);
+            _adjList.Remove(srcVertex);
+            _adjList.Remove(destVertex);
+
+            return path.ToArray();
+        }
+        
         public void RemovePolygon(Polygon polygon)
         {
             // Remove the polygon's edges and recalculate the polygon's neighbors
@@ -83,9 +200,9 @@ namespace Navigation
         {
             var list = _adjList[vertex];
 
-            for (var i = 0; i < list.Count; i++)
+            for (var i = 0; i < list.list.Count; i++)
             {
-                _adjList[list[i]].Remove(vertex);
+                _adjList[list.list[i]].list.Remove(vertex);
             }
         }
 
@@ -94,7 +211,7 @@ namespace Navigation
             var retVal = new HashSet<Vertex>();
             foreach (var vertex in polygon.Vertices)
             {
-                foreach (var vertexNeighbor in _adjList[vertex])
+                foreach (var vertexNeighbor in _adjList[vertex].list)
                 {
                     if (!polygon.Vertices.Contains(vertexNeighbor))
                     {
@@ -109,13 +226,13 @@ namespace Navigation
         private void CalculateVisiblityForVertex(Vertex pivot, List<Vertex> allVertices)
         {
             var result = _adjList[pivot];
-            GetVisibilePoints(pivot, allVertices, ref result);
+            GetVisibilePoints(pivot, allVertices, ref result.list);
         }
 
         private void GetVisibilePoints(Vertex v, List<Vertex> allVertices, ref List<Vertex> result)
         {
             var vX = v.X;
-            var vZ = v.Z;
+            var vZ = v.Y;
 
             result.Clear();
             var sortedEvents = Util.SortClockwise(vX, vZ, allVertices);
@@ -194,9 +311,9 @@ namespace Navigation
             }
 
             var fromX = from.X;
-            var fromZ = from.Z;
+            var fromZ = from.Y;
             var toX = to.X;
-            var toZ = to.Z;
+            var toZ = to.Y;
 
             // from-to ray shouldn't go through the polygon
             if (from.OwnerPolygon != null // There will be stray vertices during pathfinding

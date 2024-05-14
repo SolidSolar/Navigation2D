@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Navigation2D.NavMath
+﻿namespace Navigation2D.NavMath
 {
     public static class MathfExt
     {
