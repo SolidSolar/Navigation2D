@@ -72,7 +72,6 @@ namespace Navigation2D.Editor.DebugTools
                         Debug.DrawLine(kvp.Key.Position, v.Position, Color.blue, 15f);
                     }
                 }
-                Navigation2DEditorService.GenerateNavigationMesh(graph);
             });
             button.text = "Create mesh container";
             _list.Add(button);

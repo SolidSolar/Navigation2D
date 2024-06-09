@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: ConfigurationDataContainer
   m_EditorClassIdentifier: 
   agentNames:
-  - RandomName455fdc
+  - test
+  - agent2
   areaNames:
-  - RandomName207152
+  - test
+  - name
   agentRadius:
+  - 0.3
   - 1

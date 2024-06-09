@@ -1,10 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Navigation2D;
 using Navigation2D.NavMath;
-using Navigation2D.NavMath.PolygonClipping;
-using Navigation2D.NavMath.PolygonMerge;
 using Navigation2D.NavMath.PolygonOutline;
 using Navigation2D.NavMath.PolygonSelfIntersectionCheck;
 using UnityEngine;
