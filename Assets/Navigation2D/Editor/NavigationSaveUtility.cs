@@ -28,7 +28,7 @@ namespace Navigation2D.Editor.Data
             AssetDatabase.SaveAssets();
         }
 
-        public NavigationDataContainer CreateContainer(string path)
+        public NavigationDataContainer CreateContainer(string path, string name)
         {
             string projectFolder = Path.GetDirectoryName(Application.dataPath);
             projectFolder = Path.Join(projectFolder, path);
@@ -47,8 +47,8 @@ namespace Navigation2D.Editor.Data
             }
             
             var container = ScriptableObject.CreateInstance<NavigationDataContainer>();
-            container.name = "randomName";
-            AssetDatabase.CreateAsset(container,Path.Join(path, container.name+".asset"));
+            container.name = name;
+            AssetDatabase.CreateAsset(container,Path.Join(path, name+".asset"));
 
             AssetDatabase.SaveAssets();
             return container;

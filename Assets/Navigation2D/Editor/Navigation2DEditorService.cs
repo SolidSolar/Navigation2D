@@ -1,8 +1,14 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Navigation2D.Components;
+using Navigation2D.Data.Utility;
 using Navigation2D.Editor.Data;
 using Navigation2D.Editor.Data.DataContainers;
 using Navigation2D.NavMath;
+using Navigation2D.NavMath.PolygonOutline;
 using UnityEditor;
+using UnityEngine;
 
 namespace Navigation2D.Editor.NavigationEditor
 {
@@ -36,11 +42,50 @@ namespace Navigation2D.Editor.NavigationEditor
             return _container.VisibilityGraph;
         }
         
-        public static void GenerateNavigationMesh(VisibilityGraph graph)
+        public static void GenerateNavigationMesh(string area, string agent)
         {
+            var obstacles = GameObject.FindObjectsOfType<Navigation2DObstacle>().Where(x=>x.Area == area).ToList();
+            var boundsList = GameObject.FindObjectsOfType<Navigation2DBounds>().ToList();
+            if (obstacles.Count == 0)
+            {
+                return;
+            }
+
+            var bounds = boundsList.FirstOrDefault(x => x.Area == area);
+            
+            var colliderShapes = obstacles.Select(x => x.GetColliders());
+            List<Shape2D> shapes = new List<Shape2D>();
+
+            foreach (var c in colliderShapes)
+            {
+                shapes.AddRange(c.Select(x=>new Shape2D(x.transform.position, ((PolygonCollider2D) x).points.ToList())));
+            }
+
+            for (int index = 0; index < shapes.Count; index++)
+            {
+                shapes[index] = PolygonOutline.GetPolygonOutline(shapes[index],
+                    Configuration.agentRadius[Configuration.agentNames.IndexOf(agent)]);
+            }
+
+            var graph = new VisibilityGraph();
+            var graphBounds = bounds.GetCollider().bounds;
+            foreach (var s in shapes)
+            {
+                graph.AddPolygon(new Polygon(s.GlobalPoints.ToArray()));
+            }
+
+            if (graphBounds != default)
+            {
+                graph.AddPolygon(new Polygon(new Vector2[]
+                {
+                    new(graphBounds.min.x, graphBounds.min.y), new(graphBounds.min.x + graphBounds.extents.x*2, graphBounds.min.y),
+                    new(graphBounds.max.x, graphBounds.max.y), new(graphBounds.max.x - graphBounds.extents.x*2, graphBounds.max.y)
+                }));
+            }
+
             if (_container == null)
             {
-                _container = SaveUtility.CreateContainer(Path.Combine(DefaultNavigationContainersPath));
+                _container = SaveUtility.CreateContainer(Path.Combine(DefaultNavigationContainersPath), area + "_"+agent);
             }
 
             EditorUtility.SetDirty(_container);

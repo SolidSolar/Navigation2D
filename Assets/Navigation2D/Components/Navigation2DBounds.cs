@@ -2,15 +2,16 @@
 
 namespace Navigation2D.Components
 {
-    public class Navigation2DObstacle : MonoBehaviour
+    [RequireComponent(typeof(BoxCollider2D))]
+    public class Navigation2DBounds : MonoBehaviour
     {
         public string Area => _area;
         [SerializeField] private string _area;
-
+        
         #if UNITY_EDITOR
-        public Collider2D[] GetColliders()
+        public BoxCollider2D GetCollider()
         {
-            return GetComponents<Collider2D>();
+            return GetComponent<BoxCollider2D>();
         }
         #endif
     }

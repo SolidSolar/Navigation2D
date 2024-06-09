@@ -1,0 +1,1301 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d8401fa50f24e3f98b508e04f0844bd, type: 3}
+  m_Name: test
+  m_EditorClassIdentifier: 
+  VisibilityGraph:
+    _bst:
+      _nodeData: []
+    _polygons:
+    - Vertices:
+      - rid: 7261860148244644373
+      - rid: 7261860148244644374
+      - rid: 7261860148244644375
+      - rid: 7261860148244644376
+      Edges:
+      - rid: 7261860148244644377
+      - rid: 7261860148244644378
+      - rid: 7261860148244644379
+      - rid: 7261860148244644380
+      RightmostX: 10.080246
+      TopmostZ: 2.1984932
+      BottommostZ: -0.70580244
+    - Vertices:
+      - rid: 7261860148244644381
+      - rid: 7261860148244644382
+      - rid: 7261860148244644383
+      - rid: 7261860148244644384
+      Edges:
+      - rid: 7261860148244644385
+      - rid: 7261860148244644386
+      - rid: 7261860148244644387
+      - rid: 7261860148244644388
+      RightmostX: 10.570246
+      TopmostZ: 6.698493
+      BottommostZ: 3.7941973
+    - Vertices:
+      - rid: 7261860148244644389
+      - rid: 7261860148244644390
+      - rid: 7261860148244644391
+      - rid: 7261860148244644392
+      Edges:
+      - rid: 7261860148244644393
+      - rid: 7261860148244644394
+      - rid: 7261860148244644395
+      - rid: 7261860148244644396
+      RightmostX: 6.110245
+      TopmostZ: 9.288493
+      BottommostZ: 6.384197
+    - Vertices:
+      - rid: 7261860148244644397
+      - rid: 7261860148244644398
+      - rid: 7261860148244644399
+      - rid: 7261860148244644400
+      Edges:
+      - rid: 7261860148244644401
+      - rid: 7261860148244644402
+      - rid: 7261860148244644403
+      - rid: 7261860148244644404
+      RightmostX: 1.0002453
+      TopmostZ: 6.9884934
+      BottommostZ: 4.084198
+    - Vertices:
+      - rid: 7261860148244644405
+      - rid: 7261860148244644406
+      - rid: 7261860148244644407
+      - rid: 7261860148244644408
+      Edges:
+      - rid: 7261860148244644409
+      - rid: 7261860148244644410
+      - rid: 7261860148244644411
+      - rid: 7261860148244644412
+      RightmostX: 5.6402454
+      TopmostZ: 4.748493
+      BottommostZ: 1.8441975
+    - Vertices:
+      - rid: 7261860148244644413
+      - rid: 7261860148244644414
+      - rid: 7261860148244644415
+      - rid: 7261860148244644416
+      Edges:
+      - rid: 7261860148244644417
+      - rid: 7261860148244644418
+      - rid: 7261860148244644419
+      - rid: 7261860148244644420
+      RightmostX: 5.870245
+      TopmostZ: 0.68849325
+      BottommostZ: -2.2158024
+    - Vertices:
+      - rid: 7261860148244644421
+      - rid: 7261860148244644422
+      - rid: 7261860148244644423
+      - rid: 7261860148244644424
+      Edges:
+      - rid: 7261860148244644425
+      - rid: 7261860148244644426
+      - rid: 7261860148244644427
+      - rid: 7261860148244644428
+      RightmostX: 1.1202453
+      TopmostZ: 2.4984932
+      BottommostZ: -0.4058025
+    - Vertices:
+      - rid: 7261860148244644429
+      - rid: 7261860148244644430
+      - rid: 7261860148244644431
+      - rid: 7261860148244644432
+      Edges:
+      - rid: 7261860148244644433
+      - rid: 7261860148244644434
+      - rid: 7261860148244644435
+      - rid: 7261860148244644436
+      RightmostX: 14.491858
+      TopmostZ: 12.560544
+      BottommostZ: -5.140544
+    _allVertices:
+    - rid: 7261860148244644373
+    - rid: 7261860148244644374
+    - rid: 7261860148244644375
+    - rid: 7261860148244644376
+    - rid: 7261860148244644381
+    - rid: 7261860148244644382
+    - rid: 7261860148244644383
+    - rid: 7261860148244644384
+    - rid: 7261860148244644389
+    - rid: 7261860148244644390
+    - rid: 7261860148244644391
+    - rid: 7261860148244644392
+    - rid: 7261860148244644397
+    - rid: 7261860148244644398
+    - rid: 7261860148244644399
+    - rid: 7261860148244644400
+    - rid: 7261860148244644405
+    - rid: 7261860148244644406
+    - rid: 7261860148244644407
+    - rid: 7261860148244644408
+    - rid: 7261860148244644413
+    - rid: 7261860148244644414
+    - rid: 7261860148244644415
+    - rid: 7261860148244644416
+    - rid: 7261860148244644421
+    - rid: 7261860148244644422
+    - rid: 7261860148244644423
+    - rid: 7261860148244644424
+    - rid: 7261860148244644429
+    - rid: 7261860148244644430
+    - rid: 7261860148244644431
+    - rid: 7261860148244644432
+    _adjList:
+      keys:
+      - rid: 7261860148244644373
+      - rid: 7261860148244644374
+      - rid: 7261860148244644375
+      - rid: 7261860148244644376
+      - rid: 7261860148244644381
+      - rid: 7261860148244644382
+      - rid: 7261860148244644383
+      - rid: 7261860148244644384
+      - rid: 7261860148244644389
+      - rid: 7261860148244644390
+      - rid: 7261860148244644391
+      - rid: 7261860148244644392
+      - rid: 7261860148244644397
+      - rid: 7261860148244644398
+      - rid: 7261860148244644399
+      - rid: 7261860148244644400
+      - rid: 7261860148244644405
+      - rid: 7261860148244644406
+      - rid: 7261860148244644407
+      - rid: 7261860148244644408
+      - rid: 7261860148244644413
+      - rid: 7261860148244644414
+      - rid: 7261860148244644415
+      - rid: 7261860148244644416
+      - rid: 7261860148244644421
+      - rid: 7261860148244644422
+      - rid: 7261860148244644423
+      - rid: 7261860148244644424
+      - rid: 7261860148244644429
+      - rid: 7261860148244644430
+      - rid: 7261860148244644431
+      - rid: 7261860148244644432
+      values:
+      - list:
+        - rid: 7261860148244644430
+        - rid: 7261860148244644413
+        - rid: 7261860148244644374
+        - rid: 7261860148244644376
+        - rid: 7261860148244644381
+        - rid: 7261860148244644431
+      - list:
+        - rid: 7261860148244644430
+        - rid: 7261860148244644413
+        - rid: 7261860148244644416
+        - rid: 7261860148244644405
+        - rid: 7261860148244644408
+        - rid: 7261860148244644389
+        - rid: 7261860148244644392
+        - rid: 7261860148244644375
+        - rid: 7261860148244644373
+      - list:
+        - rid: 7261860148244644376
+        - rid: 7261860148244644416
+        - rid: 7261860148244644405
+        - rid: 7261860148244644408
+        - rid: 7261860148244644392
+        - rid: 7261860148244644382
+        - rid: 7261860148244644381
+      - list:
+        - rid: 7261860148244644430
+        - rid: 7261860148244644373
+        - rid: 7261860148244644375
+        - rid: 7261860148244644382
+        - rid: 7261860148244644381
+        - rid: 7261860148244644431
+      - list:
+        - rid: 7261860148244644430
+        - rid: 7261860148244644373
+        - rid: 7261860148244644376
+        - rid: 7261860148244644375
+        - rid: 7261860148244644405
+        - rid: 7261860148244644382
+        - rid: 7261860148244644384
+        - rid: 7261860148244644431
+      - list:
+        - rid: 7261860148244644376
+        - rid: 7261860148244644375
+        - rid: 7261860148244644416
+        - rid: 7261860148244644405
+        - rid: 7261860148244644408
+        - rid: 7261860148244644392
+        - rid: 7261860148244644381
+      - list:
+        - rid: 7261860148244644384
+        - rid: 7261860148244644382
+        - rid: 7261860148244644375
+        - rid: 7261860148244644413
+        - rid: 7261860148244644416
+        - rid: 7261860148244644405
+        - rid: 7261860148244644408
+        - rid: 7261860148244644407
+        - rid: 7261860148244644389
+        - rid: 7261860148244644392
+        - rid: 7261860148244644431
+      - list:
+        - rid: 7261860148244644430
+        - rid: 7261860148244644381
+        - rid: 7261860148244644383
+        - rid: 7261860148244644392
+        - rid: 7261860148244644431
+      - list:
+        - rid: 7261860148244644382
+        - rid: 7261860148244644375
+        - rid: 7261860148244644374
+        - rid: 7261860148244644413
+        - rid: 7261860148244644416
+        - rid: 7261860148244644405
+        - rid: 7261860148244644408
+        - rid: 7261860148244644407
+        - rid: 7261860148244644390
+        - rid: 7261860148244644392
+        - rid: 7261860148244644431
+        - rid: 7261860148244644383
+      - list:
+        - rid: 7261860148244644382
+        - rid: 7261860148244644408
+        - rid: 7261860148244644407
+        - rid: 7261860148244644424
+        - rid: 7261860148244644397
+        - rid: 7261860148244644400
+        - rid: 7261860148244644432
+        - rid: 7261860148244644391
+        - rid: 7261860148244644389
+      - list:
+        - rid: 7261860148244644392
+        - rid: 7261860148244644390
+        - rid: 7261860148244644407
+        - rid: 7261860148244644421
+        - rid: 7261860148244644424
+        - rid: 7261860148244644397
+        - rid: 7261860148244644400
+        - rid: 7261860148244644399
+        - rid: 7261860148244644432
+        - rid: 7261860148244644431
+      - list:
+        - rid: 7261860148244644384
+        - rid: 7261860148244644383
+        - rid: 7261860148244644382
+        - rid: 7261860148244644375
+        - rid: 7261860148244644374
+        - rid: 7261860148244644389
+        - rid: 7261860148244644391
+        - rid: 7261860148244644432
+        - rid: 7261860148244644431
+      - list:
+        - rid: 7261860148244644406
+        - rid: 7261860148244644415
+        - rid: 7261860148244644424
+        - rid: 7261860148244644407
+      - list:
+        - rid: 7261860148244644424
+        - rid: 7261860148244644423
+        - rid: 7261860148244644422
+        - rid: 7261860148244644429
+        - rid: 7261860148244644432
+        - rid: 7261860148244644399
+        - rid: 7261860148244644397
+      - list:
+        - rid: 7261860148244644400
+        - rid: 7261860148244644398
+        - rid: 7261860148244644429
+        - rid: 7261860148244644432
+        - rid: 7261860148244644391
+      - list:
+        - rid: 7261860148244644390
+        - rid: 7261860148244644408
+        - rid: 7261860148244644407
+        - rid: 7261860148244644406
+        - rid: 7261860148244644415
+        - rid: 7261860148244644414
+        - rid: 7261860148244644424
+        - rid: 7261860148244644397
+        - rid: 7261860148244644399
+        - rid: 7261860148244644432
+        - rid: 7261860148244644391
+      - list:
+        - rid: 7261860148244644416
+        - rid: 7261860148244644408
+        - rid: 7261860148244644382
+        - rid: 7261860148244644381
+        - rid: 7261860148244644375
+      - list:
+        - rid: 7261860148244644416
+        - rid: 7261860148244644415
+        - rid: 7261860148244644424
+        - rid: 7261860148244644397
+        - rid: 7261860148244644407
+        - rid: 7261860148244644405
+      - list:
+        - rid: 7261860148244644408
+        - rid: 7261860148244644406
+        - rid: 7261860148244644424
+        - rid: 7261860148244644397
+      - list:
+        - rid: 7261860148244644382
+        - rid: 7261860148244644375
+        - rid: 7261860148244644416
+        - rid: 7261860148244644405
+        - rid: 7261860148244644407
+      - list:
+        - rid: 7261860148244644430
+        - rid: 7261860148244644429
+        - rid: 7261860148244644414
+        - rid: 7261860148244644416
+        - rid: 7261860148244644389
+        - rid: 7261860148244644383
+        - rid: 7261860148244644375
+        - rid: 7261860148244644374
+        - rid: 7261860148244644373
+      - list:
+        - rid: 7261860148244644430
+        - rid: 7261860148244644429
+        - rid: 7261860148244644422
+        - rid: 7261860148244644421
+        - rid: 7261860148244644424
+        - rid: 7261860148244644397
+        - rid: 7261860148244644400
+        - rid: 7261860148244644406
+        - rid: 7261860148244644415
+        - rid: 7261860148244644413
+      - list:
+        - rid: 7261860148244644416
+        - rid: 7261860148244644424
+        - rid: 7261860148244644397
+        - rid: 7261860148244644406
+        - rid: 7261860148244644405
+        - rid: 7261860148244644375
+      - list:
+        - rid: 7261860148244644405
+        - rid: 7261860148244644408
+        - rid: 7261860148244644382
+        - rid: 7261860148244644375
+      - list:
+        - rid: 7261860148244644414
+        - rid: 7261860148244644429
+        - rid: 7261860148244644422
+        - rid: 7261860148244644424
+        - rid: 7261860148244644391
+        - rid: 7261860148244644407
+        - rid: 7261860148244644406
+        - rid: 7261860148244644415
+      - list:
+        - rid: 7261860148244644414
+        - rid: 7261860148244644429
+        - rid: 7261860148244644432
+        - rid: 7261860148244644398
+        - rid: 7261860148244644423
+        - rid: 7261860148244644421
+      - list:
+        - rid: 7261860148244644424
+        - rid: 7261860148244644422
+        - rid: 7261860148244644429
+        - rid: 7261860148244644432
+        - rid: 7261860148244644398
+        - rid: 7261860148244644397
+        - rid: 7261860148244644407
+      - list:
+        - rid: 7261860148244644406
+        - rid: 7261860148244644415
+        - rid: 7261860148244644397
+        - rid: 7261860148244644407
+      - list:
+        - rid: 7261860148244644430
+        - rid: 7261860148244644432
+        - rid: 7261860148244644399
+        - rid: 7261860148244644398
+        - rid: 7261860148244644423
+        - rid: 7261860148244644422
+        - rid: 7261860148244644421
+        - rid: 7261860148244644414
+        - rid: 7261860148244644413
+      - list:
+        - rid: 7261860148244644429
+        - rid: 7261860148244644414
+        - rid: 7261860148244644413
+        - rid: 7261860148244644374
+        - rid: 7261860148244644373
+        - rid: 7261860148244644376
+        - rid: 7261860148244644381
+        - rid: 7261860148244644384
+        - rid: 7261860148244644431
+      - list:
+        - rid: 7261860148244644430
+        - rid: 7261860148244644373
+        - rid: 7261860148244644376
+        - rid: 7261860148244644381
+        - rid: 7261860148244644384
+        - rid: 7261860148244644383
+        - rid: 7261860148244644389
+        - rid: 7261860148244644392
+        - rid: 7261860148244644391
+        - rid: 7261860148244644432
+      - list:
+        - rid: 7261860148244644431
+        - rid: 7261860148244644392
+        - rid: 7261860148244644391
+        - rid: 7261860148244644390
+        - rid: 7261860148244644400
+        - rid: 7261860148244644399
+        - rid: 7261860148244644398
+        - rid: 7261860148244644423
+        - rid: 7261860148244644422
+        - rid: 7261860148244644429
+    _distances:
+      keys: []
+      values: []
+    _prevs:
+      keys: []
+      values: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 7261860148244644373
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 10.047684, y: -0.6835575}
+        _posX: 10.047684
+        _posY: -0.6835575
+        _edge1:
+          rid: 7261860148244644377
+        _edge2:
+          rid: 7261860148244644380
+        _neighbors:
+        - rid: 7261860148244644374
+        - rid: 7261860148244644376
+        _ownerPolygon:
+          rid: 7261860148244644437
+        _isConvex: 1
+    - rid: 7261860148244644374
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 6.7692614, y: -0.70580244}
+        _posX: 6.7692614
+        _posY: -0.70580244
+        _edge1:
+          rid: 7261860148244644378
+        _edge2:
+          rid: 7261860148244644377
+        _neighbors:
+        - rid: 7261860148244644375
+        - rid: 7261860148244644373
+        _ownerPolygon:
+          rid: 7261860148244644437
+        _isConvex: 1
+    - rid: 7261860148244644375
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 6.745166, y: 2.1984932}
+        _posX: 6.745166
+        _posY: 2.1984932
+        _edge1:
+          rid: 7261860148244644379
+        _edge2:
+          rid: 7261860148244644378
+        _neighbors:
+        - rid: 7261860148244644376
+        - rid: 7261860148244644374
+        _ownerPolygon:
+          rid: 7261860148244644437
+        _isConvex: 1
+    - rid: 7261860148244644376
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 10.080246, y: 2.1775265}
+        _posX: 10.080246
+        _posY: 2.1775265
+        _edge1:
+          rid: 7261860148244644380
+        _edge2:
+          rid: 7261860148244644379
+        _neighbors:
+        - rid: 7261860148244644373
+        - rid: 7261860148244644375
+        _ownerPolygon:
+          rid: 7261860148244644437
+        _isConvex: 1
+    - rid: 7261860148244644377
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 9.600275
+        _v1: {x: 10.047684, y: -0.6835575}
+        _v2: {x: 6.7692614, y: -0.70580244}
+    - rid: 7261860148244644378
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 7.466632
+        _v1: {x: 6.7692614, y: -0.70580244}
+        _v2: {x: 6.745166, y: 2.1984932}
+    - rid: 7261860148244644379
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 7.4667025
+        _v1: {x: 6.745166, y: 2.1984932}
+        _v2: {x: 10.080246, y: 2.1775265}
+    - rid: 7261860148244644380
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 10.266119
+        _v1: {x: 10.080246, y: 2.1775265}
+        _v2: {x: 10.047684, y: -0.6835575}
+    - rid: 7261860148244644381
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 10.5376835, y: 3.8164423}
+        _posX: 10.5376835
+        _posY: 3.8164423
+        _edge1:
+          rid: 7261860148244644385
+        _edge2:
+          rid: 7261860148244644388
+        _neighbors:
+        - rid: 7261860148244644382
+        - rid: 7261860148244644384
+        _ownerPolygon:
+          rid: 7261860148244644438
+        _isConvex: 1
+    - rid: 7261860148244644382
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 7.259261, y: 3.7941973}
+        _posX: 7.259261
+        _posY: 3.7941973
+        _edge1:
+          rid: 7261860148244644386
+        _edge2:
+          rid: 7261860148244644385
+        _neighbors:
+        - rid: 7261860148244644383
+        - rid: 7261860148244644381
+        _ownerPolygon:
+          rid: 7261860148244644438
+        _isConvex: 1
+    - rid: 7261860148244644383
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 7.2351656, y: 6.698493}
+        _posX: 7.2351656
+        _posY: 6.698493
+        _edge1:
+          rid: 7261860148244644387
+        _edge2:
+          rid: 7261860148244644386
+        _neighbors:
+        - rid: 7261860148244644384
+        - rid: 7261860148244644382
+        _ownerPolygon:
+          rid: 7261860148244644438
+        _isConvex: 1
+    - rid: 7261860148244644384
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 10.570246, y: 6.6775265}
+        _posX: 10.570246
+        _posY: 6.6775265
+        _edge1:
+          rid: 7261860148244644388
+        _edge2:
+          rid: 7261860148244644387
+        _neighbors:
+        - rid: 7261860148244644381
+        - rid: 7261860148244644383
+        _ownerPolygon:
+          rid: 7261860148244644438
+        _isConvex: 1
+    - rid: 7261860148244644385
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 7.0177913
+        _v1: {x: 10.5376835, y: 3.8164423}
+        _v2: {x: 7.259261, y: 3.7941973}
+    - rid: 7261860148244644386
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 6.240737
+        _v1: {x: 7.259261, y: 3.7941973}
+        _v2: {x: 7.2351656, y: 6.698493}
+    - rid: 7261860148244644387
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 6.241055
+        _v1: {x: 7.2351656, y: 6.698493}
+        _v2: {x: 10.570246, y: 6.6775265}
+    - rid: 7261860148244644388
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 9.574399
+        _v1: {x: 10.570246, y: 6.6775265}
+        _v2: {x: 10.5376835, y: 3.8164423}
+    - rid: 7261860148244644389
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 6.077683, y: 6.4064426}
+        _posX: 6.077683
+        _posY: 6.4064426
+        _edge1:
+          rid: 7261860148244644393
+        _edge2:
+          rid: 7261860148244644396
+        _neighbors:
+        - rid: 7261860148244644390
+        - rid: 7261860148244644392
+        _ownerPolygon:
+          rid: 7261860148244644439
+        _isConvex: 1
+    - rid: 7261860148244644390
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 2.799261, y: 6.384197}
+        _posX: 2.799261
+        _posY: 6.384197
+        _edge1:
+          rid: 7261860148244644394
+        _edge2:
+          rid: 7261860148244644393
+        _neighbors:
+        - rid: 7261860148244644391
+        - rid: 7261860148244644389
+        _ownerPolygon:
+          rid: 7261860148244644439
+        _isConvex: 1
+    - rid: 7261860148244644391
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 2.7751656, y: 9.288493}
+        _posX: 2.7751656
+        _posY: 9.288493
+        _edge1:
+          rid: 7261860148244644395
+        _edge2:
+          rid: 7261860148244644394
+        _neighbors:
+        - rid: 7261860148244644392
+        - rid: 7261860148244644390
+        _ownerPolygon:
+          rid: 7261860148244644439
+        _isConvex: 1
+    - rid: 7261860148244644392
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 6.110245, y: 9.267527}
+        _posX: 6.110245
+        _posY: 9.267527
+        _edge1:
+          rid: 7261860148244644396
+        _edge2:
+          rid: 7261860148244644395
+        _neighbors:
+        - rid: 7261860148244644389
+        - rid: 7261860148244644391
+        _ownerPolygon:
+          rid: 7261860148244644439
+        _isConvex: 1
+    - rid: 7261860148244644393
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 1.8915359
+        _v1: {x: 6.077683, y: 6.4064426}
+        _v2: {x: 2.799261, y: 6.384197}
+    - rid: 7261860148244644394
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 1.7941144
+        _v1: {x: 2.799261, y: 6.384197}
+        _v2: {x: 2.7751656, y: 9.288493}
+    - rid: 7261860148244644395
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 2.9220543
+        _v1: {x: 2.7751656, y: 9.288493}
+        _v2: {x: 6.110245, y: 9.267527}
+    - rid: 7261860148244644396
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 5.083494
+        _v1: {x: 6.110245, y: 9.267527}
+        _v2: {x: 6.077683, y: 6.4064426}
+    - rid: 7261860148244644397
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 0.96768296, y: 4.1064425}
+        _posX: 0.96768296
+        _posY: 4.1064425
+        _edge1:
+          rid: 7261860148244644401
+        _edge2:
+          rid: 7261860148244644404
+        _neighbors:
+        - rid: 7261860148244644398
+        - rid: 7261860148244644400
+        _ownerPolygon:
+          rid: 7261860148244644440
+        _isConvex: 1
+    - rid: 7261860148244644398
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: -2.310739, y: 4.084198}
+        _posX: -2.310739
+        _posY: 4.084198
+        _edge1:
+          rid: 7261860148244644402
+        _edge2:
+          rid: 7261860148244644401
+        _neighbors:
+        - rid: 7261860148244644399
+        - rid: 7261860148244644397
+        _ownerPolygon:
+          rid: 7261860148244644440
+        _isConvex: 1
+    - rid: 7261860148244644399
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: -2.3348346, y: 6.9884934}
+        _posX: -2.3348346
+        _posY: 6.9884934
+        _edge1:
+          rid: 7261860148244644403
+        _edge2:
+          rid: 7261860148244644402
+        _neighbors:
+        - rid: 7261860148244644400
+        - rid: 7261860148244644398
+        _ownerPolygon:
+          rid: 7261860148244644440
+        _isConvex: 1
+    - rid: 7261860148244644400
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 1.0002453, y: 6.967527}
+        _posX: 1.0002453
+        _posY: 6.967527
+        _edge1:
+          rid: 7261860148244644404
+        _edge2:
+          rid: 7261860148244644403
+        _neighbors:
+        - rid: 7261860148244644397
+        - rid: 7261860148244644399
+        _ownerPolygon:
+          rid: 7261860148244644440
+        _isConvex: 1
+    - rid: 7261860148244644401
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 2.861276
+        _v1: {x: 0.96768296, y: 4.1064425}
+        _v2: {x: -2.310739, y: 4.084198}
+    - rid: 7261860148244644402
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 3.3347912
+        _v1: {x: -2.310739, y: 4.084198}
+        _v2: {x: -2.3348346, y: 6.9884934}
+    - rid: 7261860148244644403
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 1.8915427
+        _v1: {x: -2.3348346, y: 6.9884934}
+        _v2: {x: 1.0002453, y: 6.967527}
+    - rid: 7261860148244644404
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 1.8055378
+        _v1: {x: 1.0002453, y: 6.967527}
+        _v2: {x: 0.96768296, y: 4.1064425}
+    - rid: 7261860148244644405
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 5.607683, y: 1.8664424}
+        _posX: 5.607683
+        _posY: 1.8664424
+        _edge1:
+          rid: 7261860148244644409
+        _edge2:
+          rid: 7261860148244644412
+        _neighbors:
+        - rid: 7261860148244644406
+        - rid: 7261860148244644408
+        _ownerPolygon:
+          rid: 7261860148244644441
+        _isConvex: 1
+    - rid: 7261860148244644406
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 2.329261, y: 1.8441975}
+        _posX: 2.329261
+        _posY: 1.8441975
+        _edge1:
+          rid: 7261860148244644410
+        _edge2:
+          rid: 7261860148244644409
+        _neighbors:
+        - rid: 7261860148244644407
+        - rid: 7261860148244644405
+        _ownerPolygon:
+          rid: 7261860148244644441
+        _isConvex: 1
+    - rid: 7261860148244644407
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 2.3051653, y: 4.748493}
+        _posX: 2.3051653
+        _posY: 4.748493
+        _edge1:
+          rid: 7261860148244644411
+        _edge2:
+          rid: 7261860148244644410
+        _neighbors:
+        - rid: 7261860148244644408
+        - rid: 7261860148244644406
+        _ownerPolygon:
+          rid: 7261860148244644441
+        _isConvex: 1
+    - rid: 7261860148244644408
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 5.6402454, y: 4.7275267}
+        _posX: 5.6402454
+        _posY: 4.7275267
+        _edge1:
+          rid: 7261860148244644412
+        _edge2:
+          rid: 7261860148244644411
+        _neighbors:
+        - rid: 7261860148244644405
+        - rid: 7261860148244644407
+        _ownerPolygon:
+          rid: 7261860148244644441
+        _isConvex: 1
+    - rid: 7261860148244644409
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 5.2929797
+        _v1: {x: 5.607683, y: 1.8664424}
+        _v2: {x: 2.329261, y: 1.8441975}
+    - rid: 7261860148244644410
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 2.5745335
+        _v1: {x: 2.329261, y: 1.8441975}
+        _v2: {x: 2.3051653, y: 4.748493}
+    - rid: 7261860148244644411
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 2.5744524
+        _v1: {x: 2.3051653, y: 4.748493}
+        _v2: {x: 5.6402454, y: 4.7275267}
+    - rid: 7261860148244644412
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 5.152519
+        _v1: {x: 5.6402454, y: 4.7275267}
+        _v2: {x: 5.607683, y: 1.8664424}
+    - rid: 7261860148244644413
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 5.8376827, y: -2.1935575}
+        _posX: 5.8376827
+        _posY: -2.1935575
+        _edge1:
+          rid: 7261860148244644417
+        _edge2:
+          rid: 7261860148244644420
+        _neighbors:
+        - rid: 7261860148244644414
+        - rid: 7261860148244644416
+        _ownerPolygon:
+          rid: 7261860148244644442
+        _isConvex: 1
+    - rid: 7261860148244644414
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 2.5592608, y: -2.2158024}
+        _posX: 2.5592608
+        _posY: -2.2158024
+        _edge1:
+          rid: 7261860148244644418
+        _edge2:
+          rid: 7261860148244644417
+        _neighbors:
+        - rid: 7261860148244644415
+        - rid: 7261860148244644413
+        _ownerPolygon:
+          rid: 7261860148244644442
+        _isConvex: 1
+    - rid: 7261860148244644415
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 2.5351653, y: 0.68849325}
+        _posX: 2.5351653
+        _posY: 0.68849325
+        _edge1:
+          rid: 7261860148244644419
+        _edge2:
+          rid: 7261860148244644418
+        _neighbors:
+        - rid: 7261860148244644416
+        - rid: 7261860148244644414
+        _ownerPolygon:
+          rid: 7261860148244644442
+        _isConvex: 1
+    - rid: 7261860148244644416
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 5.870245, y: 0.6675266}
+        _posX: 5.870245
+        _posY: 0.6675266
+        _edge1:
+          rid: 7261860148244644420
+        _edge2:
+          rid: 7261860148244644419
+        _neighbors:
+        - rid: 7261860148244644413
+        - rid: 7261860148244644415
+        _ownerPolygon:
+          rid: 7261860148244644442
+        _isConvex: 1
+    - rid: 7261860148244644417
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 9.314776
+        _v1: {x: 5.8376827, y: -2.1935575}
+        _v2: {x: 2.5592608, y: -2.2158024}
+    - rid: 7261860148244644418
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 6.464201
+        _v1: {x: 2.5592608, y: -2.2158024}
+        _v2: {x: 2.5351653, y: 0.68849325}
+    - rid: 7261860148244644419
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 6.4639997
+        _v1: {x: 2.5351653, y: 0.68849325}
+        _v2: {x: 5.870245, y: 0.6675266}
+    - rid: 7261860148244644420
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 7.9630694
+        _v1: {x: 5.870245, y: 0.6675266}
+        _v2: {x: 5.8376827, y: -2.1935575}
+    - rid: 7261860148244644421
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 1.087683, y: -0.38355756}
+        _posX: 1.087683
+        _posY: -0.38355756
+        _edge1:
+          rid: 7261860148244644425
+        _edge2:
+          rid: 7261860148244644428
+        _neighbors:
+        - rid: 7261860148244644422
+        - rid: 7261860148244644424
+        _ownerPolygon:
+          rid: 7261860148244644443
+        _isConvex: 1
+    - rid: 7261860148244644422
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: -2.190739, y: -0.4058025}
+        _posX: -2.190739
+        _posY: -0.4058025
+        _edge1:
+          rid: 7261860148244644426
+        _edge2:
+          rid: 7261860148244644425
+        _neighbors:
+        - rid: 7261860148244644423
+        - rid: 7261860148244644421
+        _ownerPolygon:
+          rid: 7261860148244644443
+        _isConvex: 1
+    - rid: 7261860148244644423
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: -2.2148347, y: 2.4984932}
+        _posX: -2.2148347
+        _posY: 2.4984932
+        _edge1:
+          rid: 7261860148244644427
+        _edge2:
+          rid: 7261860148244644426
+        _neighbors:
+        - rid: 7261860148244644424
+        - rid: 7261860148244644422
+        _ownerPolygon:
+          rid: 7261860148244644443
+        _isConvex: 1
+    - rid: 7261860148244644424
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 1.1202453, y: 2.4775267}
+        _posX: 1.1202453
+        _posY: 2.4775267
+        _edge1:
+          rid: 7261860148244644428
+        _edge2:
+          rid: 7261860148244644427
+        _neighbors:
+        - rid: 7261860148244644421
+        - rid: 7261860148244644423
+        _ownerPolygon:
+          rid: 7261860148244644443
+        _isConvex: 1
+    - rid: 7261860148244644425
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 7.3515086
+        _v1: {x: 1.087683, y: -0.38355756}
+        _v2: {x: -2.190739, y: -0.4058025}
+    - rid: 7261860148244644426
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 5.5055957
+        _v1: {x: -2.190739, y: -0.4058025}
+        _v2: {x: -2.2148347, y: 2.4984932}
+    - rid: 7261860148244644427
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 4.489157
+        _v1: {x: -2.2148347, y: 2.4984932}
+        _v2: {x: 1.1202453, y: 2.4775267}
+    - rid: 7261860148244644428
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 4.4918895
+        _v1: {x: 1.1202453, y: 2.4775267}
+        _v2: {x: 1.087683, y: -0.38355756}
+    - rid: 7261860148244644429
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: -6.2662563, y: -5.140544}
+        _posX: -6.2662563
+        _posY: -5.140544
+        _edge1:
+          rid: 7261860148244644433
+        _edge2:
+          rid: 7261860148244644436
+        _neighbors:
+        - rid: 7261860148244644430
+        - rid: 7261860148244644432
+        _ownerPolygon:
+          rid: 7261860148244644444
+        _isConvex: 0
+    - rid: 7261860148244644430
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 14.491858, y: -5.140544}
+        _posX: 14.491858
+        _posY: -5.140544
+        _edge1:
+          rid: 7261860148244644434
+        _edge2:
+          rid: 7261860148244644433
+        _neighbors:
+        - rid: 7261860148244644431
+        - rid: 7261860148244644429
+        _ownerPolygon:
+          rid: 7261860148244644444
+        _isConvex: 0
+    - rid: 7261860148244644431
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: 14.491858, y: 12.560544}
+        _posX: 14.491858
+        _posY: 12.560544
+        _edge1:
+          rid: 7261860148244644435
+        _edge2:
+          rid: 7261860148244644434
+        _neighbors:
+        - rid: 7261860148244644432
+        - rid: 7261860148244644430
+        _ownerPolygon:
+          rid: 7261860148244644444
+        _isConvex: 0
+    - rid: 7261860148244644432
+      type: {class: Vertex, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Position: {x: -6.2662563, y: 12.560544}
+        _posX: -6.2662563
+        _posY: 12.560544
+        _edge1:
+          rid: 7261860148244644436
+        _edge2:
+          rid: 7261860148244644435
+        _neighbors:
+        - rid: 7261860148244644429
+        - rid: 7261860148244644431
+        _ownerPolygon:
+          rid: 7261860148244644444
+        _isConvex: 0
+    - rid: 7261860148244644433
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 12.10807
+        _v1: {x: -6.2662563, y: -5.140544}
+        _v2: {x: 14.491858, y: -5.140544}
+    - rid: 7261860148244644434
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 13.491612
+        _v1: {x: 14.491858, y: -5.140544}
+        _v2: {x: 14.491858, y: 12.560544}
+    - rid: 7261860148244644435
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 5.593017
+        _v1: {x: 14.491858, y: 12.560544}
+        _v2: {x: -6.2662563, y: 12.560544}
+    - rid: 7261860148244644436
+      type: {class: Edge, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        DistanceToReference: 7.266502
+        _v1: {x: -6.2662563, y: 12.560544}
+        _v2: {x: -6.2662563, y: -5.140544}
+    - rid: 7261860148244644437
+      type: {class: Polygon, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Vertices:
+        - rid: 7261860148244644373
+        - rid: 7261860148244644374
+        - rid: 7261860148244644375
+        - rid: 7261860148244644376
+        Edges:
+        - rid: 7261860148244644377
+        - rid: 7261860148244644378
+        - rid: 7261860148244644379
+        - rid: 7261860148244644380
+        RightmostX: 10.080246
+        TopmostZ: 2.1984932
+        BottommostZ: -0.70580244
+    - rid: 7261860148244644438
+      type: {class: Polygon, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Vertices:
+        - rid: 7261860148244644381
+        - rid: 7261860148244644382
+        - rid: 7261860148244644383
+        - rid: 7261860148244644384
+        Edges:
+        - rid: 7261860148244644385
+        - rid: 7261860148244644386
+        - rid: 7261860148244644387
+        - rid: 7261860148244644388
+        RightmostX: 10.570246
+        TopmostZ: 6.698493
+        BottommostZ: 3.7941973
+    - rid: 7261860148244644439
+      type: {class: Polygon, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Vertices:
+        - rid: 7261860148244644389
+        - rid: 7261860148244644390
+        - rid: 7261860148244644391
+        - rid: 7261860148244644392
+        Edges:
+        - rid: 7261860148244644393
+        - rid: 7261860148244644394
+        - rid: 7261860148244644395
+        - rid: 7261860148244644396
+        RightmostX: 6.110245
+        TopmostZ: 9.288493
+        BottommostZ: 6.384197
+    - rid: 7261860148244644440
+      type: {class: Polygon, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Vertices:
+        - rid: 7261860148244644397
+        - rid: 7261860148244644398
+        - rid: 7261860148244644399
+        - rid: 7261860148244644400
+        Edges:
+        - rid: 7261860148244644401
+        - rid: 7261860148244644402
+        - rid: 7261860148244644403
+        - rid: 7261860148244644404
+        RightmostX: 1.0002453
+        TopmostZ: 6.9884934
+        BottommostZ: 4.084198
+    - rid: 7261860148244644441
+      type: {class: Polygon, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Vertices:
+        - rid: 7261860148244644405
+        - rid: 7261860148244644406
+        - rid: 7261860148244644407
+        - rid: 7261860148244644408
+        Edges:
+        - rid: 7261860148244644409
+        - rid: 7261860148244644410
+        - rid: 7261860148244644411
+        - rid: 7261860148244644412
+        RightmostX: 5.6402454
+        TopmostZ: 4.748493
+        BottommostZ: 1.8441975
+    - rid: 7261860148244644442
+      type: {class: Polygon, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Vertices:
+        - rid: 7261860148244644413
+        - rid: 7261860148244644414
+        - rid: 7261860148244644415
+        - rid: 7261860148244644416
+        Edges:
+        - rid: 7261860148244644417
+        - rid: 7261860148244644418
+        - rid: 7261860148244644419
+        - rid: 7261860148244644420
+        RightmostX: 5.870245
+        TopmostZ: 0.68849325
+        BottommostZ: -2.2158024
+    - rid: 7261860148244644443
+      type: {class: Polygon, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Vertices:
+        - rid: 7261860148244644421
+        - rid: 7261860148244644422
+        - rid: 7261860148244644423
+        - rid: 7261860148244644424
+        Edges:
+        - rid: 7261860148244644425
+        - rid: 7261860148244644426
+        - rid: 7261860148244644427
+        - rid: 7261860148244644428
+        RightmostX: 1.1202453
+        TopmostZ: 2.4984932
+        BottommostZ: -0.4058025
+    - rid: 7261860148244644444
+      type: {class: Polygon, ns: Navigation2D, asm: NavMathAssembly}
+      data:
+        Vertices:
+        - rid: 7261860148244644429
+        - rid: 7261860148244644430
+        - rid: 7261860148244644431
+        - rid: 7261860148244644432
+        Edges:
+        - rid: 7261860148244644433
+        - rid: 7261860148244644434
+        - rid: 7261860148244644435
+        - rid: 7261860148244644436
+        RightmostX: 14.491858
+        TopmostZ: 12.560544
+        BottommostZ: -5.140544

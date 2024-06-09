@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Navigation2D.NavMath.SelfBalancedTree;
 using UnityEngine;
 
@@ -12,14 +13,12 @@ namespace Navigation2D.NavMath
         private AVLTree<Edge> _bst = new AVLTree<Edge>();
         [SerializeField]
         private List<Polygon> _polygons = new List<Polygon>();
-        [SerializeField]
+        [SerializeReference]
         private List<Vertex> _allVertices = new List<Vertex>();
         
         [SerializeField]
         private DictionaryOfVertexAndListVertex _adjList = new DictionaryOfVertexAndListVertex();
-        [SerializeField]
         private DictionaryOfVertexAndFloat _distances = new DictionaryOfVertexAndFloat();
-        [SerializeField]
         private DictionaryOfVertexAndVertex _prevs = new DictionaryOfVertexAndVertex();
         public Dictionary<Vertex, ReferenceSerializableList<Vertex>> GetAdjacencyMatrix()
         {
@@ -80,7 +79,6 @@ namespace Navigation2D.NavMath
             if (_allVertices.Count < 1 // No vertices in graph
                 || !IntersectsWith(srcPos.x, srcPos.y, destPos.x, destPos.y)) // Doesn't intersect with any polygon
             {
-                Debug.Log(IntersectsWith(srcPos.x, srcPos.y, destPos.x, destPos.y));
                 return new[] { srcPos, destPos };
             }
 
@@ -168,7 +166,6 @@ namespace Navigation2D.NavMath
             RemoveEdgesOfVertex(destVertex);
             _adjList.Remove(srcVertex);
             _adjList.Remove(destVertex);
-
             return path.ToArray();
         }
         
